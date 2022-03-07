@@ -1,0 +1,243 @@
+### pkg install multiplot.gfn
+include SVAR.gfn
+include multiplot.gfn
+
+open "pirovano_v3c.gdt"
+
+########################################################
+### Define a function to plot the Cross-Correlograms ###
+########################################################
+function void plot_xcorrgm (list X, int order)
+    include multiplot.gfn
+    bundle options = defbundle("FONT_SIZE", 3, "PLOT_HEIGHT", 700, "PLOT_WIDTH", 1100)
+    delete tfarray
+    strings tfarray
+    loop foreach i X
+        loop foreach j X
+            xcorrgm $i $j order --plot=tf$i$j.gp
+            tfarray=tfarray+("tf$i$j.gp")
+        endloop
+    endloop
+    string Gin = multiplot(tfarray,  "display", , , options)
+    multiplot(tfarray,  "display",  options)
+end function
+#############################################################
+
+list X =   EAINTSHORTRUN ERLOG IPSALOG CPILOG IR M2LOG SMILOG
+
+scatters X --time-series --with-lines --output=display
+#############################################################
+
+### Plot the Cross-Correlograms of the three variable up to 8 lags and leads
+plot_xcorrgm(X,2)
+
+### Determine number of lags to use in a VAR model
+var 23 X --lagselect
+
+### Estimate VAR with 12 lags
+"VAR" <- var 12 X
+### Analyse the VAR residuals
+list resids = $uhat
+# Plot the residuals
+scatters resids --time-series --with-lines --output=display
+# Plot the Cross-Correlograms of the residuals up to 12 lags and leads
+plot_xcorrgm(resids,12)
+# Tests for autocorrelation of the residuals up to 12 lags
+modtest 11 --autocorr --univariate
+modtest 12 --autocorr
+modtest 12 --arch --univariate
+
+#############################################
+### Estimate SVAR model with SVAR package ###
+### Using AB model                        ###
+#############################################
+# Set up the SVAR using the "AB model" and 12 lags
+# We must organize the list before setting up the B matrix
+list X =   EAINTSHORTRUN ERLOG IPSALOG CPILOG IR M2LOG SMILOG
+list Z = const
+ModAB = SVAR_setup("AB", X, Z, 12)
+SVAR_restrict(&ModAB, "Adiag", 1)
+SVAR_restrict(&ModAB, "A", 1, 2, 0)
+SVAR_restrict(&ModAB, "A", 1, 3, 0)
+SVAR_restrict(&ModAB, "A", 1, 4, 0)
+SVAR_restrict(&ModAB, "A", 1, 5, 0)
+SVAR_restrict(&ModAB, "A", 1, 6, 0)
+SVAR_restrict(&ModAB, "A", 1, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 2, 3, 0)
+SVAR_restrict(&ModAB, "A", 2, 4, 0)
+SVAR_restrict(&ModAB, "A", 2, 5, 0)
+SVAR_restrict(&ModAB, "A", 2, 6, 0)
+SVAR_restrict(&ModAB, "A", 2, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 3, 4, 0)
+SVAR_restrict(&ModAB, "A", 3, 5, 0)
+SVAR_restrict(&ModAB, "A", 3, 6, 0)
+SVAR_restrict(&ModAB, "A", 3, 7, 0)
+
+
+SVAR_restrict(&ModAB, "A", 4, 5, 0)
+SVAR_restrict(&ModAB, "A", 4, 6, 0)
+SVAR_restrict(&ModAB, "A", 4, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 5, 1, 0)
+SVAR_restrict(&ModAB, "A", 5, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 6, 1, 0)
+SVAR_restrict(&ModAB, "A", 6, 2, 0)
+SVAR_restrict(&ModAB, "A", 6, 7, 0)
+SVAR_restrict(&ModAB, "Bdiag", NA)
+
+#############################################
+###First model of the Robustness check ######
+#############################################
+
+#############################################
+### Choleski decomposition				  ###
+#############################################
+
+# Specify the constraints on A and B
+SVAR_restrict(&ModAB, "Adiag", 1)
+SVAR_restrict(&ModAB, "A", 1, 2, 0)
+SVAR_restrict(&ModAB, "A", 1, 3, 0)
+SVAR_restrict(&ModAB, "A", 1, 4, 0)
+SVAR_restrict(&ModAB, "A", 1, 5, 0)
+SVAR_restrict(&ModAB, "A", 1, 6, 0)
+SVAR_restrict(&ModAB, "A", 1, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 2, 3, 0)
+SVAR_restrict(&ModAB, "A", 2, 4, 0)
+SVAR_restrict(&ModAB, "A", 2, 5, 0)
+SVAR_restrict(&ModAB, "A", 2, 6, 0)
+SVAR_restrict(&ModAB, "A", 2, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 3, 4, 0)
+SVAR_restrict(&ModAB, "A", 3, 5, 0)
+SVAR_restrict(&ModAB, "A", 3, 6, 0)
+SVAR_restrict(&ModAB, "A", 3, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 4, 5, 0)
+SVAR_restrict(&ModAB, "A", 4, 6, 0)
+SVAR_restrict(&ModAB, "A", 4, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 5, 6, 0)
+SVAR_restrict(&ModAB, "A", 5, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 6, 7, 0)
+SVAR_restrict(&ModAB, "Bdiag", NA)
+# Check if the SVAR model is identified
+SVAR_ident(&ModAB,1)
+
+# Estimate the SVAR model, already defining an horizon of 10 for the IRFs
+ModAB.horizon = 24
+ModAB.optmeth = 3 # to make sure there is convergence for all models at 12 lags
+SVAR_estimate(&ModAB)
+# Display estimated variance-covariance matrix of VAR residuals
+eval ModAB.Sigma
+# Display estimated A matrix
+eval ModAB.S1
+# Display estimated B matrix
+eval ModAB.S2
+# Display C matrix
+eval ModAB.C
+# and check that C = A^-1 * B
+eval inv(ModAB.S1)*ModAB.S2
+
+### Impulse Response Functions (IRFs)
+
+# Plot one of the IRFs
+# Example: response of variable 3 to shock 1
+IRFplot(&ModAB, 1, 7, 0)
+
+### IRFs with Confidence intervals using the Bootstrap method
+bfail = SVAR_boot(&ModAB, 1000, 0.95)
+# Example: response of variable 3 to shock 1 
+# EAINTSHORTRUN ERLOG IPSALOG CPILOG IR M2LOG SMILOG
+IRFplot(&ModAB, 5, 7)
+IRFplot(&ModAB, 1, 7)
+
+
+
+# Plot all the Impulse Response Functions (IRFs)
+loop foreach i X
+        IRFplot(&ModAB, i, 7, 0)
+endloop
+
+# Plot all the Impulse Response Functions (IRFs)
+# in a single plot
+include multiplot.gfn
+bundle options = defbundle("FONT_SIZE", 10, "PLOT_HEIGHT", 900, "PLOT_WIDTH", 1400)
+strings tfarray=null
+loop foreach i X
+    loop foreach j X
+        IRFsave("irf$i$j.gp",&ModAB,j,i,0)
+        tfarray+="irf$i$j.gp"
+    endloop
+endloop
+multiplot(tfarray,  "display", , , options)
+
+FEVDplot(&ModAB,7)
+
+### Forecast Error Variance Decomposition (FEVD)
+loop foreach i X
+    FEVDplot(&ModAB,i)
+endloop
+
+#############################################
+### Choleski decomposition, different order###
+#############################################
+
+list X =   EAINTSHORTRUN IPSALOG CPILOG IR M2LOG ERLOG SMILOG
+list Z = const
+ModAB = SVAR_setup("AB", X, Z, 12)
+
+# Specify the constraints on A and B
+SVAR_restrict(&ModAB, "Adiag", 1)
+SVAR_restrict(&ModAB, "A", 1, 2, 0)
+SVAR_restrict(&ModAB, "A", 1, 3, 0)
+SVAR_restrict(&ModAB, "A", 1, 4, 0)
+SVAR_restrict(&ModAB, "A", 1, 5, 0)
+SVAR_restrict(&ModAB, "A", 1, 6, 0)
+SVAR_restrict(&ModAB, "A", 1, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 2, 3, 0)
+SVAR_restrict(&ModAB, "A", 2, 4, 0)
+SVAR_restrict(&ModAB, "A", 2, 5, 0)
+SVAR_restrict(&ModAB, "A", 2, 6, 0)
+SVAR_restrict(&ModAB, "A", 2, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 3, 4, 0)
+SVAR_restrict(&ModAB, "A", 3, 5, 0)
+SVAR_restrict(&ModAB, "A", 3, 6, 0)
+SVAR_restrict(&ModAB, "A", 3, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 4, 5, 0)
+SVAR_restrict(&ModAB, "A", 4, 6, 0)
+SVAR_restrict(&ModAB, "A", 4, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 5, 6, 0)
+SVAR_restrict(&ModAB, "A", 5, 7, 0)
+
+SVAR_restrict(&ModAB, "A", 6, 7, 0)
+SVAR_restrict(&ModAB, "Bdiag", NA)
+# Check if the SVAR model is identified
+SVAR_ident(&ModAB,1)
+
+# Estimate the SVAR model, already defining an horizon of 10 for the IRFs
+ModAB.optmeth = 3
+ModAB.horizon = 25
+SVAR_estimate(&ModAB)
+
+### Impulse Response Functions (IRFs)
+
+#IRF with confidence interval
+bfail=SVAR_boot(&ModAB, 100, 0.95)
+# Plot all the Impulse Response Functions (IRFs)
+loop foreach i X
+        IRFplot(&ModAB, i, 7, 0)
+endloop
+
+### Forecast Error Variance Decomposition (FEVD)
+loop foreach i X
+    FEVDplot(&ModAB,i)
+endloop

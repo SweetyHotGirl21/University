@@ -1,0 +1,267 @@
+########################################################
+### Define a function to plot the Cross-Correlograms ###
+########################################################
+function void plot_xcorrgm (list X, int order)
+    include multiplot.gfn
+    bundle options = defbundle("FONT_SIZE", 11, "PLOT_HEIGHT", 700, "PLOT_WIDTH", 1300)
+    delete tfarray
+    strings tfarray
+    loop foreach i X
+        loop foreach j X
+            xcorrgm $i $j order --plot=tf$i$j.gp
+            tfarray=tfarray+("tf$i$j.gp")
+        endloop
+    endloop
+    #string Gin = multiplot(tfarray,  "display", , , options)
+    multiplot(tfarray,  "display", , , options)
+end function
+#############################################################
+
+
+#############################################################
+### Open the Stock and Watson data file                   ###
+#############################################################
+open "stock_watson_v3.gdt"
+smpl 1960:1 2000:4
+# There are three series in this data file
+list X =  INFLATION UNRATE FEDFUNDS
+scatters X --time-series --with-lines --output=display
+gnuplot INFLATION --time-series --with-lines --output=display
+#gnuplot UNRATE --time-series --with-lines --output=display
+#gnuplot FEDFUNDS --time-series --with-lines --output=display
+#############################################################
+
+### Plot the Cross-Correlograms of the three variable up to 8 lags and leads
+plot_xcorrgm(X,8)
+
+### Determine number of lags to use in a VAR model
+var 8 X --lagselect
+
+### Estimate VAR with 6 lags
+"VAR" <- var 6 X
+
+### Analyse the VAR residuals
+list resids = $uhat
+# Plot the residuals
+scatters resids --time-series --with-lines --output=display
+# Plot the Cross-Correlograms of the residuals up to 8 lags and leads
+plot_xcorrgm(resids,8)
+# Tests for autocorrelation of the residuals up to 8 lags
+modtest 8 --autocorr --univariate
+modtest 8 --autocorr
+
+### Display variance-covariance matrix of VAR residuals
+eval $sigma
+# Display C matrix using Gretl's internal Cholesky function
+eval cholesky($sigma)
+
+#####################################################
+#
+# Impulse Response Functions (IRF)
+# and
+# Forecast Error Variance Decomposition (FEVD)
+# can be obtained from the VAR menu
+#
+#####################################################
+
+
+
+#####################################################################
+### Next: estimate the same model as above using the SVAR package ###
+#####################################################################
+
+#############################################
+### Estimate SVAR model with SVAR package ###
+### Using C model                         ###
+#############################################
+
+# Include the SVAR package
+include SVAR.gfn
+
+# Set up the SVAR using the "C model" and 6 lags
+list X =  INFLATION UNRATE FEDFUNDS
+list Z = const
+ModC = SVAR_setup("C", X, Z, 6)
+
+# Specify the constraints on C
+SVAR_restrict(&ModC, "C", 1, 2, 0)
+SVAR_restrict(&ModC, "C", 1, 3, 0)
+SVAR_restrict(&ModC, "C", 2, 3, 0)
+# Check if the SVAR model is identified
+SVAR_ident(&ModC,1)
+
+# Estimate the SVAR model, already defining an horizon of 10 for the IRFs
+ModC.horizon = 10
+SVAR_estimate(&ModC)
+# Display estimated variance-covariance matrix of VAR residuals
+eval ModC.Sigma
+# Display estimated C matrix
+eval ModC.C
+
+### Impulse Response Functions (IRFs)
+
+# Plot one of the IRFs
+# Example: response of variable 3 to shock 1
+IRFplot(&ModC, 1, 3, 0)
+
+# Plot all the Impulse Response Functions (IRFs)
+loop foreach i X
+    loop foreach j X
+        IRFplot(&ModC, i, j, 0)
+    endloop
+endloop
+
+# Plot all the Impulse Response Functions (IRFs)
+# in a single plot
+include multiplot.gfn
+bundle options = defbundle("FONT_SIZE", 10, "PLOT_HEIGHT", 700, "PLOT_WIDTH", 1300)
+strings tfarray=null
+loop foreach i X
+    loop foreach j X
+        IRFsave("irf$i$j.gp",&ModC,j,i,0)
+        tfarray+="irf$i$j.gp"
+    endloop
+endloop
+multiplot(tfarray,  "display", , , options)
+
+# Confidence intervals for the IRFs are obtained by the Bootstrap method
+bfail = SVAR_boot(&ModC, 1000, 0.95)
+# Next plot the IRFs
+# Example: response of variable 3 to shock 1
+IRFplot(&ModC, 1, 3)
+
+### Forecast Error Variance Decomposition (FEVD)
+loop foreach i X
+    FEVDplot(&ModC,i)
+endloop
+
+
+#############################################
+### Estimate SVAR model with SVAR package ###
+### Using AB model                        ###
+#############################################
+
+# Include the SVAR package
+include SVAR.gfn
+
+# Set up the SVAR using the "AB model" and 6 lags
+list X =  INFLATION UNRATE FEDFUNDS
+list Z = const
+ModAB = SVAR_setup("AB", X, Z, 6)
+
+# Specify the constraints on A and B
+SVAR_restrict(&ModAB, "Adiag", 1)
+SVAR_restrict(&ModAB, "A", 1, 2, 0)
+SVAR_restrict(&ModAB, "A", 1, 3, 0)
+SVAR_restrict(&ModAB, "A", 2, 3, 0)
+SVAR_restrict(&ModAB, "Bdiag", NA)
+# Check if the SVAR model is identified
+SVAR_ident(&ModAB,1)
+
+# Estimate the SVAR model, already defining an horizon of 10 for the IRFs
+ModAB.horizon = 10
+SVAR_estimate(&ModAB)
+# Display estimated variance-covariance matrix of VAR residuals
+eval ModAB.Sigma
+# Display estimated A matrix
+eval ModAB.S1
+# Display estimated B matrix
+eval ModAB.S2
+# Display C matrix
+eval ModAB.C
+# and check that C = A^-1 * B
+eval inv(ModAB.S1)*ModAB.S2
+
+### Impulse Response Functions (IRFs)
+
+# Plot one of the IRFs
+# Example: response of variable 3 to shock 1
+IRFplot(&ModAB, 1, 3, 0)
+
+# Plot all the Impulse Response Functions (IRFs)
+loop foreach i X
+    loop foreach j X
+        IRFplot(&ModAB, i, j, 0)
+    endloop
+endloop
+
+# Plot all the Impulse Response Functions (IRFs)
+# in a single plot
+include multiplot.gfn
+bundle options = defbundle("FONT_SIZE", 10, "PLOT_HEIGHT", 700, "PLOT_WIDTH", 1300)
+strings tfarray=null
+loop foreach i X
+    loop foreach j X
+        IRFsave("irf$i$j.gp",&ModAB,j,i,0)
+        tfarray+="irf$i$j.gp"
+    endloop
+endloop
+multiplot(tfarray,  "display", , , options)
+
+### IRFs with Confidence intervals using the Bootstrap method
+bfail = SVAR_boot(&ModAB, 1000, 0.95)
+# Example: response of variable 3 to shock 1
+IRFplot(&ModAB, 1, 3)
+
+### Forecast Error Variance Decomposition (FEVD)
+loop foreach i X
+    FEVDplot(&ModAB,i)
+endloop
+
+
+############################################################
+### Estimate SVAR model with SVAR package                ###
+### AB specification with an extra zero restriction on A ###
+############################################################
+# Include the SVAR package
+include SVAR.gfn
+
+# Set up the SVAR using the "AB model" and 6 lags
+list X =  INFLATION UNRATE FEDFUNDS
+list Z = const
+ModABrestr = SVAR_setup("AB", X, Z, 6)
+
+# Specify the constraints on A and B
+SVAR_restrict(&ModABrestr, "Adiag", 1)
+SVAR_restrict(&ModABrestr, "A", 1, 2, 0)
+SVAR_restrict(&ModABrestr, "A", 1, 3, 0)
+SVAR_restrict(&ModABrestr, "A", 2, 3, 0)
+SVAR_restrict(&ModABrestr, "Bdiag", NA)
+
+# The extra zero restriction on A
+SVAR_restrict(&ModABrestr, "A", 3, 2, 0)
+
+# Check if the SVAR model is identified
+SVAR_ident(&ModABrestr,1)
+
+# Estimate the SVAR model, already defining an horizon of 10 for the IRFs
+ModABrestr.horizon = 10
+SVAR_estimate(&ModABrestr)
+# Display estimated variance-covariance matrix of VAR residuals
+eval ModABrestr.Sigma
+# Display estimated A matrix
+eval ModABrestr.S1
+# Display estimated B matrix
+eval ModABrestr.S2
+# Display C matrix
+eval ModABrestr.C
+
+### Impulse Response Functions (IRFs)
+# Plot all the Impulse Response Functions (IRFs)
+# in a single plot
+include multiplot.gfn
+bundle options = defbundle("FONT_SIZE", 10, "PLOT_HEIGHT", 700, "PLOT_WIDTH", 1300)
+strings tfarray=null
+loop foreach i X
+    loop foreach j X
+        IRFsave("irf$i$j.gp",&ModABrestr,j,i,0)
+        tfarray+="irf$i$j.gp"
+    endloop
+endloop
+multiplot(tfarray,  "display", , , options)
+
+### Forecast Error Variance Decomposition (FEVD)
+loop foreach i X
+    FEVDplot(&ModABrestr,i)
+endloop
+

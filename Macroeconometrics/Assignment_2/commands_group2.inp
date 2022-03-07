@@ -1,0 +1,19 @@
+# logged commands
+open \
+  C:\Users\manue\Downloads\S2-Economics\macroeconometrics\assignment_2\fin_ameco.csv
+gnuplot GDP --time-series --with-lines
+smpl 1970 2019
+adf 10 GDP --ct --test-down=AIC
+ldiff GDP
+gnuplot ld_GDP --time-series --with-lines
+adf 10 ld_GDP --c --test-down=AIC --gls --perron-qu
+corrgm ld_GDP 10
+# modelo 1
+arima 0 0 1 ; ld_GDP
+series uhat1 = $uhat
+gnuplot uhat1 --time-series --with-lines
+gnuplot uhat1 --time-series --with-lines
+corrgm uhat1 10
+# modelo 2
+arima 0 0 1 ; ld_GDP
+fcast 2020 2020
