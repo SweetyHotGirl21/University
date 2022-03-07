@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 4\n\nremove(list = ls())\n\nappro = read.table(file = \"Approx2dim.txt\", header = T, dec =\".\")\nattach(appro)\nx1 = ï..x1\nApprox2 = data.frame(x1,x2)\nApprox2 = na.omit(Approx2)\n\nplot(x1,x2, asp = 1, xlim = c(-4,3), ylim = c(-2, 4), main = \"Least Squares Regression and Eigenvector Projection\")\nabline(h = 0, v = 0)\n\nreslm = lm(x2 ~ x1 - 1)\nx2hatlm = reslm$fitted.values\n\nabline(reslm, col= \"blue\")\npoints(x1,x2hatlm, pch = 16, col = \"blue\")\n\nS = cov(Approx2)\nE = eigen(S)$vectors\nX = scale(Approx2, center = F, scale = T)\n\nAhat = X%*%E[,1]%*%t(E[,1])\nreslm2 = lm(Ahat[,2] ~ Ahat[,1] -1)\nx2hatlm2 = reslm2$fitted.values\n\nabline(reslm2, col = \"red\", lwd = 2)\npoints(Ahat[,1], x2hatlm2, pch = 16, col =\"red\")\n\n#Approximation Error for OLS = sum of residuals\nsum((reslm$residuals)^2)\n\n# Approximation Error\nAE = (dim(X)[1]-1)*sum(eigen(S)$values[2])\nAE\n \n\n",
+    "created" : 1571830533931.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2836522506",
+    "id" : "A7E67F2C",
+    "lastKnownWriteTime" : 1571868260,
+    "last_content_update" : 1571868260847,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment6/Assignment6/Exercise4.R",
+    "project_path" : "Exercise4.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

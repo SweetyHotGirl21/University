@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Your results
+{% endblock %}
+
+{% block content %}
+<p> You had an endowment of <b>{{ Constants.endowment }}</b>. <br>
+    There was a benefit of <b>{{ Constants.benefit }}</b> for <b> Beneficiaries </b>. <br>
+    You were a <b>{{ player.role }}</b>.<br>
+    Your contribution in the last round was <b/>{{ player.contribution4 }}</b>. <br>
+</p>
+<p> Taking all these information into account your final payoff is: <br>
+    <b>{{ player.payoff }}</b><br>
+</p>
+
+<hr> </hr>
+
+    {% next_button %}
+
+<hr> </hr>
+
+{% endblock %}
+
+

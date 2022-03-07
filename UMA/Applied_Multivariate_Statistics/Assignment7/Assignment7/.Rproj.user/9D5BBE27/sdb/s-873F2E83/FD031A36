@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 1\n\n# i)    TRUE\n# ii)   FALSE\n# iii)  FALSE\n# iv)   TRUE\n# v)    TRUE\n# vi)   False",
+    "created" : 1572204809331.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1935296264",
+    "id" : "FD031A36",
+    "lastKnownWriteTime" : 1572526898,
+    "last_content_update" : 1572526898912,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment7/Assignment7/Exercise1.R",
+    "project_path" : "Exercise1.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

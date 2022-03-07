@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 1\n\nremove(list = ls())\n\nA = matrix(c(13,-4,2,-4,13,-2,2,-2,10),3,3)\n\n# a) Correlation matrix C\n\nC = cov2cor(A)\nC\n\n# b)\n\nCE = eigen(C)\nCE\n\n### Die Eigenwerte und die Eigenvektoren der Korrelationsmatrix sind nicht die gleichen, wie die der Kovarianzmatrix A\n\n",
+    "created" : 1569707898355.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3972585697",
+    "id" : "2B10ED02",
+    "lastKnownWriteTime" : 1569966650,
+    "last_content_update" : 1569966650607,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment3/Assignment3/Exercise 1.R",
+    "project_path" : "Exercise 1.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

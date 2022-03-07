@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 3\n\nremove(list = ls())\n\neuro  = read.table(file = \"Europe.txt\", header = T, dec =\".\")\nattach(euro)\neurope = data.frame(CPI, UNE, INP, BOP, PRC, UN)\neurope = na.omit(europe)\nls(europe)\n\nX = scale(europe, center = T, scale = T)\nR = cor(europe)\nE = eigen(R)$vectors\n\n#  i)\nA1hat = X%*%E[,1]%*%t(E[,1])\nhead(A1hat,5)\nAE1 = (dim(X)[1]-1)*sum(eigen(R)$values[2:6])\nAE1\n\n#  ii)\nA2hat = X%*%E[,1:2]%*%t(E[,1:2])\nhead(A2hat, 5)\n\nAE2 = (dim(X)[1]-1)*sum(eigen(R)$values[3:6])\nAE2\n\n#  iii)\nA3hat = X%*%E[,1:3]%*%t(E[,1:3])\nhead(A3hat, 5)\n\nAE3 = (dim(X)[1]-1)*sum(eigen(R)$values[4:6])\nAE3\n",
+    "created" : 1571754577217.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "223983049",
+    "id" : "ABAABAF0",
+    "lastKnownWriteTime" : 1571868164,
+    "last_content_update" : 1571868164289,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment6/Assignment6/Exercise3.R",
+    "project_path" : "Exercise3.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

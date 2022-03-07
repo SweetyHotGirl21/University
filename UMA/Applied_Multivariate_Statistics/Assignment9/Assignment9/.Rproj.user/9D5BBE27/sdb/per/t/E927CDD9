@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercis 2\n\nremove(list = ls())\n\npers = read.table(file = \"Personality2019.txt\", header = T, dec =\".\")\nPers = as.matrix(pers[,2:33])\npers$Name\n\n# a)\n\nX = scale(Pers, center = TRUE, scale = FALSE)\nS = cov(X)\nlam = eigen(S)$values[1:2]\ne = eigen(S)$vectors[,1:2]\nYhat = X%*%e\nplot(Yhat[,1],Yhat[,2], type = \"n\", asp = 1)\ntext(Yhat[,1],Yhat[,2], pers$Name)\nExpl = cumsum(eigen(S)$values)/sum(eigen(S)$values)\nExpl[2]\n\n# The first two principal components explain 30.18% of the total variance.\n\n# b) \nlengthOfAxes = sqrt(e[,1]^2+e[,2]^2)\no = order(lengthOfAxes, decreasing = TRUE)\narrows(0,0,3*e[o[1],1],3*e[o[1],2], col = \"blue\")\ntext(3.5*e[o[1],1],3.5*e[o[1],2], labels = variable.names(pers[o[1]+1]), col = \"blue\")\narrows(0,0,3*e[o[2],1],3*e[o[2],2], col = \"blue\")\ntext(3.5*e[o[2],1],3.5*e[o[2],2], labels = variable.names(pers[o[2]+1]), col = \"blue\")\narrows(0,0,3*e[o[3],1],3*e[o[3],2], col = \"blue\")\ntext(3.5*e[o[3],1],3.5*e[o[3],2], labels = variable.names(pers[o[3]+1]), col = \"blue\")\narrows(0,0,3*e[o[4],1],3*e[o[4],2], col = \"blue\")\ntext(3.5*e[o[4],1],3.5*e[o[4],2], labels = variable.names(pers[o[4]+1]), col = \"blue\")\n\n# c)\nChol = c(0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0)\nSan = c(0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0)\nMel = c(1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0)\nphle = c(rep(1,32))\nPhle = phle-(Chol+San+Mel)\nCholeric = Chol-colMeans(Pers)\nC = Choleric%*%e\ntext(C[1,1],C[1,2], labels = \"Cholerica\", col = \"green\")\nMelancholic = Mel-colMeans(Pers)\nM = Melancholic%*%e\ntext(M[1,1],M[1,2], labels = \"Melancholic\", col = \"green\")\nSanguine = San-colMeans(Pers)\nSa = Sanguine%*%e\ntext(Sa[1,1],Sa[1,2], labels = \"Sanguine\", col = \"green\")\nPhlegmatic = Phle-colMeans(Pers)\nP = Phlegmatic%*%e\ntext(P[1,1],P[1,2], labels = \"Phlegmatic\", col = \"green\")\n\n# d)\nIntro = Phle+Mel\nUnst = Mel+Chol\nExtro = Chol+San\nStabel = San+Phle\nIntrovert = Intro-colMeans(Pers)\nInt = Introvert%*%e\ntext(Int[1,1],Int[1,2], labels = \"Introvert\", col = \"red\")\nUnstable = Unst-colMeans(Pers)\nUns = Unstable%*%e\ntext(Uns[1,1],Uns[1,2], labels = \"Unstable\", col = \"red\")\nExtrovert = Extro-colMeans(Pers)\nEx = Extrovert%*%e\ntext(Ex[1,1],Ex[1,2], labels = \"Extrovert\", col = \"red\")\nStabele = Stabel-colMeans(Pers)\nSt = Stabele%*%e\ntext(St[1,1],St[1,2], labels = \"Stable\", col = \"red\")\n\n# e)\nDelta = as.matrix(dist(Pers, method = \"manhattan\", upper = TRUE, diag = TRUE))\nDeltastar = Delta^2\nI  = diag(1, nrow = 26, ncol = 26)\nJ = matrix(c(rep(1, 26*26)), nrow = 26, ncol = 26)\nn = 1/26\nH = I-n*J\nB = -0.5*H%*%Deltastar%*%H\nreseigen = eigen(B)\nlambda = round(reseigen$values, digits = 4)\nlambda\n# Since there are negative eigenvalues, B is not n.n.d.\n\n# f)\nQE = reseigen$vectors\nQlam = reseigen$values\nQLam = diag(Qlam[1:2])\nQYhat = QE[,1:2]%*%sqrt(QLam)\nplot(-QYhat[,1],QYhat[,2], asp = 1, type = \"n\", ylab = \"Y2hat\", xlab = \"X2hat\")\ntext(-QYhat[,1],QYhat[,2], pers$Name)\n# The biplot differs from the MDS-plot.\n\n# g) \nPersonality = dist(X, method = \"euclidean\", upper = TRUE, diag = TRUE)\nPersALM = hclust(Personality, method = \"average\")\nplot(PersALM,  hang = -1, labels = pers$Name, ylab = \"Personality Distance\")\nrect.hclust(PersALM, k = 4, border = c(1,2,3,4))\nplot(Yhat[,1],Yhat[,2], type = \"n\", asp = 1)\ntext(Yhat[,1],Yhat[,2], pers$Name, col = cutree(PersALM, k = 4))\n# The cluster does correspond more or less to the biplot except the observations Tobias and Jungin.\n",
+    "created" : 1573466910969.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1324767191",
+    "id" : "E927CDD9",
+    "lastKnownWriteTime" : 1573500767,
+    "last_content_update" : 1573500767612,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment9/Assignment9/Exercise2.R",
+    "project_path" : "Exercise2.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

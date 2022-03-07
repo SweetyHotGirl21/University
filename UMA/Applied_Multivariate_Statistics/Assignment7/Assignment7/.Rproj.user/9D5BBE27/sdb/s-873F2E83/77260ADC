@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise3\n\nremove(list = ls())\n\neuro  = read.table(file = \"Europe.txt\", header = T, dec =\".\")\nattach(euro)\neurope = data.frame(euro)\neurope = na.omit(europe)\nCountry = ï..Country\nnumbers = cbind(CPI, UNE, INP, BOP, PRC, UN)\nS = cov(numbers)\n\n# a)\nR = cor(numbers)\n\nEhat = eigen(R)$vectors\nLamhat = eigen(R)$values\nLam = diag(x = c(Lamhat),nrow = 6, ncol = 6)\nround(Lam, digits = 4)\nLamhatsqu = sqrt(Lam)\nround(Lamhatsqu, digits = 4)\nltil = Ehat%*%Lamhatsqu\nLtil = round(ltil, digits = 4)\nLtil\npcfa1 = data.frame(Variable = names(europe)[2:7], Ltil[,1:2], Communalities = ((Ltil[,1])^2+(Ltil[,2])^2), SpeVar1 = 1-((Ltil[,1])^2+(Ltil[,2])^2))\nPCFA1 = format(pcfa1, digits = 4)\nPCFA1\nProp = c(((sum(Ltil[,1]^2))/6),((sum(Ltil[,1]^2))/6)+(sum(Ltil[,2]^2))/6)\nround(Prop, digits = 4)\n\n\n# b)\nLstar = round(varimax(Ltil[,1:2])$loadings[1:6,1:2], digits = 4)\nRotma = varimax(Ltil[,1:2])$rotmat\nRotma\npcfa2 = data.frame(Variable = names(europe)[2:7], Lstar[,1:2], Communalities = ((Lstar[,1])^2+(Lstar[,2])^2), SpeVar = 1-((Lstar[,1])^2+(Lstar[,2])^2))\nPCFA2 = format(pcfa2, digits = 4)\nPCFA2\nProp2 = c(((sum(Lstar[,1]^2))/6),((sum(Lstar[,1]^2))/6)+(sum(Lstar[,2]^2))/6)\nround(Prop2, digits = 4)\n### Name Factor 1: Demand Surplus\n### Name Factor 2: Business Cycle\n\nplot(PCFA2$X1,PCFA2$X2, type = \"n\", asp = 1, ylim = c(-1.5,1.5), xlim = c(-1.5,1.5), xlab = \"l1\", ylab = \"l2\")\ntext(Lstar[,1],Lstar[,2], PCFA2$Variable)\ntext(Ltil[,1],Ltil[,2], PCFA1$Variable)\narrows(0,0,Rotma[1,1],Rotma[2,1])\narrows(0,0,Rotma[1,2],Rotma[2,2])\narrows(0,0,-Rotma[1,2],-Rotma[1,1])\narrows(0,0,-Rotma[1.1],-Rotma[2,1])\n\n\n\n# c)\nround(varimax(Ltil)$rotmat, digits = 4)\nround(eigen(S)$vectors, digits = 4)\n# They are not the same!\n\n\n",
+    "created" : 1572206343351.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2473330709",
+    "id" : "77260ADC",
+    "lastKnownWriteTime" : 1572529840,
+    "last_content_update" : 1572529840906,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment7/Assignment7/Exercise3.R",
+    "project_path" : "Exercise3.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

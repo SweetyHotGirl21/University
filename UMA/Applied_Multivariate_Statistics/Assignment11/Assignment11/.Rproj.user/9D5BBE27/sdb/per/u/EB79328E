@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "a = 0:30\na\nb = pbinom(a,30,0.9)\nb\nplot(a,b, type= \"h\")\n\ndbinom(30,30,0.9)\n\nni=c(13,10,13,6,11,10,8,4,12,13,7,6,12,4,10,15,14,5,15,10,15,14,15,14,13,\n       + 4,11,12,12,16,11,11,8,7,15,11,12,14,16,7,12,4,6,15,8,11,5,5,7,16)\npi=rep(0.02,50)\npi\nlength(ni)\nA=chisq.test(x=ni,p=pi)\nA\nnames(A)\nattach(A)\nstatistic\n?chisq.test\n",
+    "created" : 1575797678731.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2572147140",
+    "id" : "EB79328E",
+    "lastKnownWriteTime" : 2531904937321833075,
+    "last_content_update" : 1575801760804,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

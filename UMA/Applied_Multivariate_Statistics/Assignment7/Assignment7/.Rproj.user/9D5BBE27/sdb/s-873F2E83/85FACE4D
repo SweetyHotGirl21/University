@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 2\n\nremove(list = ls())\n\nL = matrix(c(2,7,1,3,1,2,5,2,3,2,1,5),4,3)\nL\nc = diag(x = c(1,2,1,3), nrow = 4, ncol = 4)\ncovX = L%*%t(L)+c\ncovX\ncorrX = cov2cor(covX)\ncorrX\n\n# i)\nvarX3 = covX[3,3]\nvarX3\n# ii)\ncovX13 = covX[1,3]\ncovX13\n# iii)\ncorrX13 = corrX[1,3]\ncorrX13\n# iv)\ncovX12 = covX[1,2]\ncovX12\n# v)\nvarF3 = 1\nvarF3\n# vi)\ncovF12 = 0\ncovF12\n# vii)\ncovX3F2 = L[3,2]\ncovX3F2\n# viii) Obacht!!! Nur eine Annahme\nsqrt(var(x3))(var(x3))\n\n#viiii\n",
+    "created" : 1572036313611.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3991751044",
+    "id" : "85FACE4D",
+    "lastKnownWriteTime" : 1572389952,
+    "last_content_update" : 1572389952157,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment7/Assignment7/Exercise2.R",
+    "project_path" : "Exercise2.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

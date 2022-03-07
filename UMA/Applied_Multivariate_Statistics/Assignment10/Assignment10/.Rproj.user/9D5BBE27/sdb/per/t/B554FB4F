@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 3\n\nremove(list = ls())\n\nstudents2009 = read.table(\"students2009.txt\", header = TRUE, dec = \",\")\nstudents2009 = students2009[c(1,4,35,36)]\nstudents2009 = na.omit(students2009)\n\n\n\n",
+    "created" : 1573825089236.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1265839482",
+    "id" : "B554FB4F",
+    "lastKnownWriteTime" : 1574276309,
+    "last_content_update" : 1574276309599,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment10/Assignment10/Exercise3.R",
+    "project_path" : "Exercise3.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

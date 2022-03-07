@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 4\n\nremove(list = ls())\n\ne = c(1,0,-1,2)\ne\ns = c(1,0.2,0.4,-0.5,0.2,2,0.8,0,0.4,0.8,2,0,-0.5,0,0,1)\nS = matrix(s,4,4)\nS\n\nx1 = c(0,0,0,0)\nx2 = c(1,1,1,1)\nx3 = c(1,0,1,0)\n\n# a)\n#  i)\n\ndenx1 = (1/(((2*pi)^(4/2))*sqrt(det(S))))*exp((-0.5)*(t(x1-e)%*%solve(S)%*%(x1-e)))\ndenx1\n\n#  ii)\n\ndenx2 = (1/(((2*pi)^(4/2))*sqrt(det(S))))*exp((-0.5)*(t(x2-e)%*%solve(S)%*%(x2-e)))\ndenx2\n\n#  iii)\n\ndenx3 = (1/(((2*pi)^(4/2))*sqrt(det(S))))*exp((-0.5)*(t(x3-e)%*%solve(S)%*%(x3-e)))\ndenx3\n\n# b) \n\n#  i)\n\n(1/(((2*pi)^(4/2))*sqrt(det(S))))*exp((-0.5)*(qchisq(0.95,4)))\n\n#  ii)\n\n(1/(((2*pi)^(4/2))*sqrt(det(S))))*exp((-0.5)*(qchisq(0.9,4)))\n\n#  iii)\n\n(1/(((2*pi)^(4/2))*sqrt(det(S))))*exp((-0.5)*(qchisq(0.8,4)))\n\n",
+    "created" : 1569782018252.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3535165567",
+    "id" : "FD013E94",
+    "lastKnownWriteTime" : 1569967841,
+    "last_content_update" : 1569967841,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment3/Assignment3/Exercise 4.R",
+    "project_path" : "Exercise 4.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

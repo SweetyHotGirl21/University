@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 7\n\nremove(list = ls())\n\ngetwd()\n\nstudents  = read.table(file = \"students2008.txt\", header = T, dec =\",\")\nattach(students)\nheightweight = data.frame(height,weight)\nheigthweight = na.omit(heightweight)\ndetach(students)\nattach(heigthweight)\n\nx1 = seq(140,220, le = 1000)\nx2 = seq(40,110, le = 1000)\n\nX = cbind(height,weight)\n\nm1 = mean(height)\nm2 = mean(weight)\nm = c(m1,m2)\ns = cov(X)\nS = solve(s)\n\nCOR = cov2cor(S)\ndens = (1/((2*pi)*sqrt(S11*S22)*sqrt(1-COR12^2)))*exp(-0.5*qchisq(0.95,2))\n\nf= function(v1,v2)\n{\n  (1/((2*pi)*sqrt(S11*S22)*sqrt(1-COR12^2)))*exp((-1/(2*(1-COR12^2)))*(((v1-m1)^2/S11)\n  -2*COR12*((v1-m1)/sqrt(S11))*((v2-m2)/sqrt(S22))+((v2-m2)^2)/S22))\n}\n\n",
+    "created" : 1569962104899.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3262567414",
+    "id" : "E1FD5F89",
+    "lastKnownWriteTime" : 1569962168,
+    "last_content_update" : 1569962168073,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment3/Assignment3/Alternative 7.R",
+    "project_path" : "Alternative 7.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

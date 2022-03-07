@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "x = c(1,2,3)\nvar(x)\n\nourvar = function(x)\n{\n  mean(x^2)-mean(x)^2\n}\n\nourvar\nourvar(x)*3/2\n\nourvar(1:12)\nvar(1:12)\nm1=matrix(1:9,3,3)\nm1\nm1\nourvar(m1)\n\nx1=seq(-3,3,le=100)\nx2=x1^2\nplot(x1,x2)\nplot(x1,x2,type=\"l\")\n\nx1=seq(-1,1,le=100)\nx2=x1\n\nf= function(x1,x2)\n{\n  x1^4-2*x2^2+(2*x1^2-1)*x2^2\n}\n\nf(0,0)\nresouter=outer(x1,x2,f)\nresouter\npersp(x1,x2,resouter,ticktype=\"detailed\")\ncontour(x1,x2,resouter)\n",
+    "created" : 1568971015047.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1828903131",
+    "id" : "26A753D0",
+    "lastKnownWriteTime" : 1569185645,
+    "last_content_update" : 1569185646830,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment1/Vorlesung3.R",
+    "project_path" : "Vorlesung3.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

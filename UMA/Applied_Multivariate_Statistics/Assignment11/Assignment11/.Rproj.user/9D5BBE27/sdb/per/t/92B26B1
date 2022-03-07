@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 1\n\nremove(list = ls())\n\nSwissLabor=read.table(file=\"SwissLabor.txt\",header=T)\nattach(SwissLabor)\n\nsummary(SwissLabor)\n\nplot(participation~age,ylevels=2:1,main=\"Participation and Age\")\nplot(participation~education,ylevels=2:1, main=\"Participation and Education\")\n\nplot(participation~income,ylevels=2:1, main=\"Participation and Income\")\nplot(participation~foreign,ylevels=2:1, main=\"Participation and Foreign\")\n\nboxplot(age~youngkids,main=\"Age and Young Kids\", xlab=\"Number of Young Kids\",ylab=\"Age\")\n\nboxplot(education~foreign,main=\"Education and Foreign\", ylab=\"Years of Education\")\n\nmean(age[youngkids==1&education>=10])\nmean(age[youngkids==1&education<10])\nmean(age[youngkids==2&education<10])\n\nage2=age^2\nreslogit=glm(participation~income+age+age2+education+youngkids+oldkids+foreign,family=binomial)\nsummary(reslogit)\n\nresprobit=glm(participation~income+age+age2+education+youngkids+oldkids+foreign,family=binomial(link=\"probit\"))\nsummary(resprobit)\n",
+    "created" : 1575618608820.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "895999375",
+    "id" : "92B26B1",
+    "lastKnownWriteTime" : 1575634379,
+    "last_content_update" : 1575634379988,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment11/Assignment11/Exercise1.R",
+    "project_path" : "Exercise1.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

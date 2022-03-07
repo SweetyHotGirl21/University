@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "###Exercise 3\n\nremove(list = ls())\n\nx1 = seq(-1,1,le=40)\nx2=x1\n\n# i)\n\nA1=matrix(c(1,0,0,1),2,2)\nf= function(v1,v2)\n{\n  A1[1,1]*v1^2+A1[2,2]*v2^2+2*A1[1,2]*v1*v2\n}\nresouter=outer(x1,x2,f)\npersp(x1,x2,asp = 1,resouter,ticktype=\"detailed\", zlab = \"z\")\ncontour(x1,x2,resouter,asp = 1)\n\n# ii)\n\nA2=matrix(c(1,0,0,2),2,2)\nf= function(v1,v2)\n{\n  A2[1,1]*v1^2+A2[2,2]*v2^2+2*A2[1,2]*v1*v2\n}\nresouter=outer(x1,x2,f)\npersp(x1,x2,asp = 1,resouter,ticktype=\"detailed\", zlab = \"z\")\ncontour(x1,x2,resouter,asp=1)\n\n###  iii)\n\nA3=matrix(c(1,0,0,0.5),2,2)\nf= function(v1,v2)\n{\n  A3[1,1]*v1^2+A3[2,2]*v2^2+2*A3[1,2]*v1*v2\n}\nresouter=outer(x1,x2,f)\npersp(x1,x2,asp = 1,resouter,ticktype=\"detailed\", zlab = \"z\")\ncontour(x1,x2,resouter,asp=1)\n\n###  iv)\n\nA4=matrix(c(1,0.5,0.5,1),2,2)\nf= function(v1,v2)\n{\n  A4[1,1]*v1^2+A4[2,2]*v2^2+2*A4[1,2]*v1*v2\n}\nresouter=outer(x1,x2,f)\npersp(x1,x2,asp = 1,resouter,ticktype=\"detailed\", zlab = \"z\")\ncontour(x1,x2,resouter,asp=1)\n\n\n###  v)\n\nA5=matrix(c(1,0.8,0.8,1),2,2)\nf= function(v1,v2)\n{\n  A5[1,1]*v1^2+A5[2,2]*v2^2+2*A5[1,2]*v1*v2\n}\nresouter=outer(x1,x2,f)\npersp(x1,x2,asp = 1,resouter,ticktype=\"detailed\", zlab = \"z\")\ncontour(x1,x2,resouter,asp=1)\n\n###  vi)\n\nA6=matrix(c(1,-0.5,-0.5,1),2,2)\nf= function(v1,v2)\n{\n  A6[1,1]*v1^2+A6[2,2]*v2^2+2*A6[1,2]*v1*v2\n}\nresouter=outer(x1,x2,f)\npersp(x1,x2,asp = 1,resouter,ticktype=\"detailed\", zlab = \"z\")\ncontour(x1,x2,resouter,asp=1)\n\n###  vii)\n\nA7 = solve(A5)\nf= function(v1,v2)\n{\n  A7[1,1]*v1^2+A7[2,2]*v2^2+2*A7[1,2]*v1*v2\n}\nresouter=outer(x1,x2,f)\npersp(x1,x2,asp = 1,resouter,ticktype=\"detailed\", zlab = \"z\")\ncontour(x1,x2,resouter,asp=1)\n\n###  viii)\n\nA8 = solve(A6)\nf= function(v1,v2)\n{\n  A8[1,1]*v1^2+A8[2,2]*v2^2+2*A8[1,2]*v1*v2\n}\nresouter=outer(x1,x2,f)\npersp(x1,x2,asp = 1,resouter,ticktype=\"detailed\", zlab = \"z\")\ncontour(x1,x2,resouter,asp=1)\n\n\n",
+    "created" : 1568977530327.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3386026964",
+    "id" : "7B4B9DAD",
+    "lastKnownWriteTime" : 1569422297,
+    "last_content_update" : 1569422297,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment2/Assignment2/Exercise 3.R",
+    "project_path" : "Exercise 3.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

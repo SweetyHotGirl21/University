@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "###Assignment 1\n\nremove(list = ls())\n\n###Exercise 5\n\nav = c(2,1,3,4,3,8,-2,2,0,-4,5,1,-1,3,4,1)\nA = matrix(av,4,4)\n\n### a)\ndet(A)\n\n#Die Determinante(A) ist !=0. Daraus ist zu folgern, dass die Matrix vollen Rang hat und die Spaltenvektoren linear unabhängig sind. \n\n### b)\nmv2 = c(1,2,-1,5,1,3)\nm2 = matrix(mv2,2,3, byrow = TRUE)\n\ndm2 = det(t(m2)%*%m2)\nround(dm2)\n\n#Die Derterminate(t(m2)%*%m2)) = 0. Somit hat die Matrix keinen vollen Rang und linear abhängige Spaltenvektoren. Es exsistiert keine Inverse zu dieser Matrix\n\n### c)\niA = solve(A)\nround(iA, digits = 4)\n\n\n",
+    "created" : 1568387913513.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "693707665",
+    "id" : "5BB5EC09",
+    "lastKnownWriteTime" : 1568445556,
+    "last_content_update" : 1568445556136,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment1/Exercise5-1.R",
+    "project_path" : "Exercise5-1.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

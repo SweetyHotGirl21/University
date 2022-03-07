@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "###Assignment 1\n\nremove(list = ls())\n\n###Exercise 6\n\nvx = c(1,0,0,0,0,1)\nx = matrix(vx,3,2)\ny = c(1,3,2)\n\nyd = x%*%(solve(t(x)%*%x))%*%t(x)%*%y\nyd\n\n",
+    "created" : 1568388566974.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "730826429",
+    "id" : "67992BC9",
+    "lastKnownWriteTime" : 1568394018,
+    "last_content_update" : 1568394018771,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment1/Exercise6-1.R",
+    "project_path" : "Exercise6-1.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

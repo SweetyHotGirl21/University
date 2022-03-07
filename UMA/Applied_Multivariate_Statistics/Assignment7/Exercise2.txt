@@ -1,0 +1,40 @@
+### Exercise 2
+
+L = matrix(c(2,7,1,3,1,2,5,2,3,2,1,5),4,3)
+c = diag(x = c(1,2,1,3), nrow = 4, ncol = 4)
+covX = L%*%t(L)+c
+corrX = cov2cor(covX)
+corrX
+
+# i)
+varX3 = covX[3,3]
+varX3
+# ii)
+covX13 = covX[1,3]
+covX13
+# iii)
+corrX13 = corrX[1,3]
+corrX13
+# iv)
+covX12 = covX[1,2]
+covX12
+# v)
+varF3 = 1
+varF3
+# vi)
+covF12 = 0
+covF12
+# vii)
+covX3F2 = L[3.2]
+covX3F2
+# viii) Obacht!!! Nur eine Annahme
+
+  
+  
+  
+  
+
+  
+  
+  
+  

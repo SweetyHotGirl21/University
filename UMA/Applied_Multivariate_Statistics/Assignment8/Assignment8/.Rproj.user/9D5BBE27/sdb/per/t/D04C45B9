@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 2\n\nremove(list = ls())\n\nlibrary(tools)\nlibrary(HSAUR)\ndata(\"voting\")\n\n# a)\nDelDis = voting\n\nI  = diag(1, nrow = 15, ncol = 15)\nJ = matrix(c(rep(1, 15*15)), nrow = 15, ncol = 15)\nn = 1/15\nH = I-n*J\nDelDis2 = DelDis^2\nB = -0.5*H%*%DelDis2%*%H\nround(eigen(B)$values, digits = 4)  \n### B has negativ eigenvalues, so it is not nonnegativ definite. Therfor it is not Euclidean.\n\n# b)\nQ = -0.5*H%*%DelDis2%*%H\nQe = eigen(Q)$vectors[,1:2]\nQlam = eigen(Q)$values[1:2]\nQLam = diag(sqrt(Qlam), nrow = 2, ncol = 2)\nYhat = Qe%*%QLam\nCM = c(\"Hunt(R)\", \"Sandman(R)\", \"Howard(D)\", \"Thompson(D)\",\n                \"Freylinghuysen(R)\", \"Forsythe(R)\", \"Widnall(R)\", \n                \"Roe(D)\", \"Heltoski(D)\", \"Rodino(D)\", \"Minish(D)\", \n                \"Rinaldo(R)\", \"Maraziti(R)\", \"Daniels(D)\", \"Patten(D)\")\nplot(Yhat, type = \"n\", asp = 1, xlab = \"Coordinate 1\", ylab = \"Coordinate 2\", xlim = c(-13,7), ylim = c(-6,8))\ntext(Yhat[,1],Yhat[,2], CM)\n\n# c)\ndata.frame(\"C1\" = cmdscale(voting, k = 2)[,1],\"Yhat1\" = Yhat[,1],\"C2\" = cmdscale(voting, k = 2)[,2],\"Yhat2\" = Yhat[,2])\n### These are the same results.\n",
+    "created" : 1572708468687.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3236991850",
+    "id" : "D04C45B9",
+    "lastKnownWriteTime" : 1573045453,
+    "last_content_update" : 1573045453,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment8/Assignment8/Exercise2.R",
+    "project_path" : "Exercise2.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

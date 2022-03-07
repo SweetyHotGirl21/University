@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 3\n\nremove(list = ls())\n\npers3 = read.table(file = \"Personality.txt\", header = T, dec =\".\")\n\n# a)\nPers3 = scale(pers3, scale = FALSE, center = TRUE)\nR = cor(pers3)\nPersDelt = as.dist(1-R)\nPersreshc = hclust(PersDelt, method = \"average\")\nplot(Persreshc,  hang = -1, labels = pers3$Name, ylab = \"1 -R Distance\")\nrect.hclust(Persreshc, k = 4, border = c(1,2,3,4) )\nGroup = sort(cutree(Persreshc, k = 4))\nGroup[1:12]    \n# Cluster 1\nGroup[13:14]\n# Cluster 2\nGroup[15:28]\n# Cluster 3\nGroup[29:32]\n# Cluster 4\n\n# b)\nX3 = R\nQ = X3%*%t(X3)\nQE = eigen(Q)$vectors\nQlam = eigen(Q)$values\nQLam = diag(Qlam[1:2])\nQYhat = QE[,1:2]%*%sqrt(QLam)\nplot(QYhat[,1],QYhat[,2], asp = 1, type = \"n\")\ntext(QYhat[,1],QYhat[,2], variable.names(pers3), col = cutree(Persreshc, k = 4))\n\n# c)\nChol = c(0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0)\nSan = c(0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0)\nCSan = 2*San\nMel = c(1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0)\nCMel = 3*Mel\nphle = c(rep(1,32))\nPhle = phle-(Chol+San+Mel)\nCPhle = 4*Phle\nColor = CPhle+Chol+CSan+CMel\nplot(QYhat[,1],QYhat[,2], asp = 1, type = \"n\")\ntext(QYhat[,1],QYhat[,2], variable.names(pers3), col = Color)\n\n",
+    "created" : 1573479501225.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "370829350",
+    "id" : "9671FE44",
+    "lastKnownWriteTime" : 1573500790,
+    "last_content_update" : 1573500790479,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment9/Assignment9/Exercise3.R",
+    "project_path" : "Exercise3.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

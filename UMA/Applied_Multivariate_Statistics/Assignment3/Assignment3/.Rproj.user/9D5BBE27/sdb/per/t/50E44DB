@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 5   \n\nremove(list = ls())\n\nm = c(1,0.5)\nm1 = 1\nm2 = 0.5\ns = matrix(c(1,0.8,0.8,1),2,2)\nS = solve(s)\n\n# a) \n\nx1 = seq(-3,4,le=100)\nx2 = x1\n\nf= function(v1,v2)\n{\n S[1,1]*(v1-m1)^2+S[2,2]*(v2-m2)^2+2*S[2,1]*(v1-m1)*(v2-m2)\n}\n\nc = qchisq(0.95,2)\nz = outer(x1,x2,f)\ncontour(x1,x2, z, levels = c, asp = 1, drawlabels = FALSE)\n\n\n# b) \n\ndens = (2*pi)^-1*det(s)^-0.5*exp(-0.5*qchisq(0.95,2))\ndens1 = round(dens, digits = 5)\npaste(\"Ervery point on this contour exhibit is lying on on the density value\", dens1)\n\n# c) \n\neigen(s)\n\nL1 = sqrt(eigen(s)$values[1])*sqrt(qchisq(0.95,2))\nL1\nL2 = sqrt(eigen(s)$values[2])*sqrt(qchisq(0.95,2))\nL2\n\n",
+    "created" : 1569866093222.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1873409035",
+    "id" : "50E44DB",
+    "lastKnownWriteTime" : 1570191250,
+    "last_content_update" : 1570191250003,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment3/Assignment3/Exercise 5.R",
+    "project_path" : "Exercise 5.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Text related Questions 4:
+{% endblock %}
+
+{% block content %}
+
+<p> Please answer the following questions regarding "Text 4"!<br>
+
+</p>
+
+<hr> </hr>
+    {% formfields %}
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: If you have any questions, please raise your hand.</i></p>
+{% endblock %}

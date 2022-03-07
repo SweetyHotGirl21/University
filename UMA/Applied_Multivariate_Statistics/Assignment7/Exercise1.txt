@@ -1,0 +1,8 @@
+### Exercise 1
+
+# i)    TRUE
+# ii)   FALSE
+# iii)  FALSE
+# iv)   TRUE
+# v)    TRUE
+# vi)   TRUE

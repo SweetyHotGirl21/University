@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 3\n\nremove(list = ls())\n\nm = c(1,0,-1,2)\nm\ns = c(1,0.2,0.4,-0.5,0.2,2,0.8,0,0.4,0.8,2,0,-0.5,0,0,1)\nS = matrix(s,4,4)\nS\n\nCOR = cov2cor(S)\nround(COR, digits = 4)\n\n### X3 und X4 sind unkorreliert, Die beiden paare X1 X2, X2 X3 sind korreliert.  \n\n# b)\n\n#  i)\n\nm1 = m[3]\nS1 = S[3,3]\n\npaste(\"X3 ~ N(\",m1,\",\",S1,\")\")\n\n",
+    "created" : 1569782570964.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "671177135",
+    "id" : "D943BE",
+    "lastKnownWriteTime" : 1569967803,
+    "last_content_update" : 1569967803943,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment3/Assignment3/Exersice 3.R",
+    "project_path" : "Exersice 3.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

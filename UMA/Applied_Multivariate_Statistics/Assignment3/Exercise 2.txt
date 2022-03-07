@@ -1,0 +1,107 @@
+### Exercise 2
+
+remove(list = ls())
+
+# i)
+
+m = c(0,0)
+m1 = 0
+m2 = 0
+
+S11 = 1
+S22 = 1
+
+COR12 = 0
+
+x1 = seq(-3,3, le = 100)
+x2 = seq(-3,3, le = 100)
+
+f= function(v1,v2)
+{
+  (1/((2*pi)*sqrt(S11*S22)*sqrt(1-COR12^2)))*exp((-1/(2*(1-COR12^2)))*(((v1-m1)^2/S11)
+  -2*COR12*((v1-m1)/sqrt(S11))*((v2-m2)/sqrt(S22))+((v2-m2)^2)/S22))
+}
+z = outer(x1,x2,f)
+
+persp(x1,x2,z,main="",cex.lab=1.5,theta=30,phi=20,r=50,d=0.1,expand=0.5,
+      ltheta=90,lphi=180,shade=0.75,ticktype="detailed",nticks=5,
+      xlim=c(-3,3),ylim=c(-3,3),zlim=c(0,0.2))
+contour(x1,x2,z,asp = 1)
+
+# ii)
+
+m = c(0,0)
+m1 = 0
+m2 = 0
+
+S11 = 1.5^2
+S22 = 1
+
+COR12 = 0
+
+x1 = seq(-3,3, le = 100)
+x2 = seq(-3,3, le = 100)
+
+f= function(v1,v2)
+{
+  (1/((2*pi)*sqrt(S11*S22)*sqrt(1-COR12^2)))*exp((-1/(2*(1-COR12^2)))*(((v1-m1)^2/S11)
+  -2*COR12*((v1-m1)/sqrt(S11))*((v2-m2)/sqrt(S22))+((v2-m2)^2)/S22))
+}
+z = outer(x1,x2,f)
+
+persp(x1,x2,z,main="",cex.lab=1.5,theta=30,phi=20,r=50,d=0.1,expand=0.5,
+      ltheta=90,lphi=180,shade=0.75,ticktype="detailed",nticks=5,
+      xlim=c(-3,3),ylim=c(-3,3),zlim=c(0,0.2))
+contour(x1,x2,z,asp = 1)
+
+# iii)
+
+m = c(0,0)
+m1 = 0
+m2 = 0
+
+S11 = 1
+S22 = 1
+
+COR12 = -0.8
+
+x1 = seq(-3,3, le = 100)
+x2 = seq(-3,3, le = 100)
+
+f= function(v1,v2)
+{
+  (1/((2*pi)*sqrt(S11*S22)*sqrt(1-COR12^2)))*exp((-1/(2*(1-COR12^2)))*(((v1-m1)^2/S11)
+  -2*COR12*((v1-m1)/sqrt(S11))*((v2-m2)/sqrt(S22))+((v2-m2)^2)/S22))
+}
+z = outer(x1,x2,f)
+
+persp(x1,x2,z,main="",cex.lab=1.5,theta=30,phi=20,r=50,d=0.1,expand=0.5,
+      ltheta=90,lphi=180,shade=0.75,ticktype="detailed",nticks=5,
+      xlim=c(-3,3),ylim=c(-3,3),zlim=c(0,0.2))
+contour(x1,x2,z,asp = 1)
+
+# iv)
+
+m = c(0,0)
+m1 = 0
+m2 = 0
+
+S11 = 1
+S22 = 1
+
+COR12 = 0.8
+
+x1 = seq(-3,3, le = 100)
+x2 = seq(-3,3, le = 100)
+
+f= function(v1,v2)
+{
+  (1/((2*pi)*sqrt(S11*S22)*sqrt(1-COR12^2)))*exp((-1/(2*(1-COR12^2)))*(((v1-m1)^2/S11)
+  -2*COR12*((v1-m1)/sqrt(S11))*((v2-m2)/sqrt(S22))+((v2-m2)^2)/S22))
+}
+z = outer(x1,x2,f)
+
+persp(x1,x2,z,main="",cex.lab=1.5,theta=30,phi=20,r=50,d=0.1,expand=0.5,
+      ltheta=90,lphi=180,shade=0.75,ticktype="detailed",nticks=5,
+      xlim=c(-3,3),ylim=c(-3,3),zlim=c(0,0.2))
+contour(x1,x2,z,asp = 1)

@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Contribute
+{% endblock %}
+
+{% block content %}
+    Consider you own an endowment of <b>{{ Constants.endowment }}</b>. <br>
+    How much will you contribute to the governments project to tackle climate
+    change (from 0 to 100)? <br>
+
+    {% formfield player.contribution1 label="Your contribution" %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 5\n\nremove(list = ls())\n\nx1 = seq(-2,2,le=100)\nx2 = x1\nA = matrix(c(5,4,4,5),2,2)\n\nf= function(v1,v2)\n{\n  A[1,1]*v1^2+A[2,2]*v2^2+2*A[1,2]*v1*v2\n}\n\nresouter=outer(x1,x2,f)\ncontour(x1 ,x2 ,resouter,levels = 2, asp = 1, drawlabels = FALSE, xlim=c(-2,2), ylim = c(-2,2))\n\nE=eigen(A)\nE\n\n###Diese Werte stimmen mit jenen überein, welche mit Hand berechnet wurden.\n\ne10 = E$vectors[,1]\ne11 = (sqrt(2)/sqrt(9))*e10\narrows(0,0,e11[1],e11[2],col = \"black\")\ntext(e11[1]+0.3,e11[2],\"x\")\n\ne20 = E$vectors[,2]\ne21 = (sqrt(2)/sqrt(1))*e20\narrows(0,0,e21[1],e21[2],col = \"black\")\ntext(e21[1]-0.3,e21[2],\"y\")\n\nle11 = sqrt(sum(e11^2))\npaste(\"Die Länge des Eigenvektors x beträgt:\", round(le11, digits = 6))\n\nle21 = sqrt(sum(e21^2))\npaste(\"Die Länge des Eigenvektors y beträgt:\", round(le21, digits = 6))\n\n",
+    "created" : 1568979540156.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4037176591",
+    "id" : "B1148682",
+    "lastKnownWriteTime" : 1569318502,
+    "last_content_update" : 1569318502,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment2/Assignment2/Exercise 5.R",
+    "project_path" : "Exercise 5.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 2\n\nremove(list = ls())\n\nlibrary(rJava)\nlibrary(iplots)\n\ngetwd()\n\n\n\neuro  = read.table(file = \"Europe.txt\", header = T, dec =\".\")\nattach(euro)\neurope = data.frame(euro)\neurope = na.omit(europe)\nls(europe)\nCountry = europe$ï..Country\nCPI = europe$CPI\nUNE = c(europe$UNE)\nINP = c(europe$INP)\nBOP = c(europe$BOP)\nPRC = c(europe$PRC)\nUN = c(europe$UN)\n\nnumbers = cbind(CPI,UNE,INP,BOP,PRC,UN)\nS = cov(numbers)\nr = round(cor(numbers), digits = 4)\n\n# a) \npairs(numbers)\n\nreseigen = eigen(r)\nlambda = round(reseigen$values, digits = 4)\nplot(lambda, type = \"l\", main = \"Scree-Plot\", xlab = \"# component\")\n\n# b)\nround(r, digits = 4)\n\n# c)\nE = round(reseigen$vectors, digits = 4)\nX = scale(numbers, center = TRUE, scale = TRUE)\nYhat = (X)%*%E\ny1hat = Yhat[,1]\ny2hat = Yhat[,2]\nihist(y1hat)\nihist(y2hat)\nihist(CPI)\nihist(UNE)\nihist(INP)\nihist(BOP)\nihist(PRC)\nihist(UN)\n\n\n# d)\nE = round(reseigen$vectors, digits = 4)\nE\nlambda\nround(cumsum(lambda)/sum(diag(r)),4)\ne1 = E[,1]\ne2 = E[,2]\ne3 = E[,3]\ne4 = E[,4]\ne5 = E[,5]\ne6 = E[,6]\n\n\n\n### e)\nlambda1 = lambda[1]\nlambda2 = lambda[2]\nrec1 = round(lambda1/sum(lambda), digits = 4)\npaste(\"The first principal component explains\", rec1*100, \"% of the total variation. It is mostly driven by CPI and PRC. It is bigger for countriese with a low Consumer Price Index and high final consumption expenditure\")\nrec2 = round(lambda2/sum(lambda), digits = 4)\npaste(\"The second  principal component explains\", rec2*100, \"% of the total variation. It is mostly driven by INP, BOP and UN. It is bigger for Countries with a low industiral Production, low Balances of Payments and high changes in Unemployment\")\n\n### f)\ny1hatr = round(Yhat[,1], digits = 2)\ny2hatr = round(Yhat[,2], digits = 2)\ny12hat = data.frame(Country,y1hatr ,y2hatr, CPI,UNE,INP,BOP,PRC,UN)\ny12hat\n\n###  i) \npaste(\"Denmark, Ireland, France, Italy, Cyprus, Finland, UK\")\npaste(\"Diese Länder haben die Eigenschaften, dass sie eine geringe Infaltion haben und einen hohen Konsum. Außerdem haben sie ein geringe Industirelle Produktion und eine gerninge Balance of Payments. Weiter eint sie eie starke Änderungen in der Arbeitslosigkeit.\")\n\n###  ii)\npaste(\"Bulgaria, Greece, Spain, Portugal, Slovenia, Portugal\")\npaste(\"Diese Länder haben eine hohe Infaltion und geringen privaten Konsum. Die Industielle Produtkoin ist gering, wie auch die Balance of Payments. Außerdem ist die Arbeitslosenquote stark schwankend. Dies ist die Gruppe der Südeuropäischenländer, welche die Finazkrise stark getroffen hat.\")\n\n###  iii)\npaste(\"Czech Republik, Estonia, Latvia, Lithuania, Hungary, Poland, Romania, Slovakia\")\npaste(\"Hohe Infaltion und niedriger privater Konsum. Allerdings sind industrielle Produktion und die Balance of Payments hoch. Die Schwankungen in der Arebitslosigkeit sind gering. Dies ist die Gruppe der osteuropäischen Länder.\")\n\n###  iv)\npaste(\"Belgium, Germany, Luxembourg, Malta, Netherlands, Austria, Malta, Sweden\")\npaste(\"Die Länder eint eine gerninge Inflation und hoher privater Konsum, eine ausgeprägte industirelle Produktion, eine hohe Balance of Payments und gernige Schwankungen in der Arbeitslosigkeit. Es ist die Gruppe der nord- und mitteleuropäischen Länder die Volkswirtschaftlich sehr gut darstehen.\")\n\n\nplot(y1hat,y2hat, type =\"n\")\ntext(y1hat,y2hat)\n",
+    "created" : 1570792074837.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2669621488",
+    "id" : "E8DDC890",
+    "lastKnownWriteTime" : 1571396213,
+    "last_content_update" : 1571396214297,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment5/Assignment5/Exercise2.R",
+    "project_path" : "Exercise2.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

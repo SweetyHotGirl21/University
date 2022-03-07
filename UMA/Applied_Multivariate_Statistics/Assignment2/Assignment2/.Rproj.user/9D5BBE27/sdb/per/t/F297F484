@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "### Händisch!!!\n### Nicht abgeben!!!\n\nm = matrix(c(3,-sqrt(2),-sqrt(2),2),2,2)\nem = eigen(m)\nem\n1/(sqrt(3))\nem1 = em$vectors[,1]\nem1\n4*em1%*%t(em1)\nt(em1)%*%(em1)\nem1%*%t(em1)\n\nm2 = matrix(c(1,-5,-5,1),2,2)\nem2 = eigen(m2)\n\n(em2$vectors[,1])%*%em2$vectors[,2]\n\nv11 = c(1/sqrt(3),-sqrt(2)/sqrt(3))\nv22 = c(sqrt(2)/sqrt(3),1/sqrt(3))\nt(v11)%*%v22\n4*v11\nv11\nv22\n",
+    "created" : 1569240099982.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "119053766",
+    "id" : "F297F484",
+    "lastKnownWriteTime" : 1569333148,
+    "last_content_update" : 1569333148638,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment2/Assignment2/Exercise 1.R",
+    "project_path" : "Exercise 1.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

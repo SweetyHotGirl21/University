@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "###Assignment 1\n\nremove(list = ls())\n\n###Exercise 3\n\n### a)\nx = 0\ny = 0\nx1 = c(2,1)\ny1 = c(3,0)\n\nlx1 = sqrt(sum(x1^2))\nly1 = sqrt(sum(y1^2))\nprojxy = (((t(y1)%*%x1)/ly1)%*%(1/ly1))%*%y1\nprojxy\n\nplot(x,y,xlim=c(0,4),ylim=c(-0.2,1.2),type=\"n\",axes=FALSE,frame.plot=FALSE,ann=FALSE,asp=1)\narrows(0,0,2,1,col = 4)\narrows(0,0,3,0,col = 2)\narrows(0,-0.1,2,-0.1)\narrows(2,1,projxy[1,1],projxy[1,2], lty = 2, code = 0)\narrows(2,1,2,0, lty = 2, code = 0)\ntext(2.2,1.1,\"x\")\ntext(3.2,0,\"y\")\n\n### b)\nx = 0\ny = 0\nx1 = c(2,1)\ny1 = c(3,1)\n\nlx1 = sqrt(sum(x1^2))\nly1 = sqrt(sum(y1^2))\nprojxy = (((t(y1)%*%x1)/ly1)%*%(1/ly1))%*%y1\nprojxy\n\nplot(x,y,xlim=c(0,4),ylim=c(-0.2,1.2),type=\"n\",axes=FALSE,frame.plot=FALSE,ann=FALSE,asp=1)\narrows(0,0,2,1,col = 4)\narrows(0,0,3,1,col = 2)\narrows(0,-0.1,projxy[1,1],projxy[1,2] -0.1)\narrows(2,1,projxy[1,1],projxy[1,2], lty = 2, code = 0)\ntext(2.2,1.1,\"x\")\ntext(3.2,1,\"y\")\n\n### c) \n?plot\n#Mit asp wird das Längenverhätnis zischen den Einheiten der y-Achse und der x-Achse (y/x) bestimmt.\n#asp = 1 sgarantiert, dass das Verhältnis, zwischen den Längeneinheiten 1 beträgt. \n\n",
+    "created" : 1568376747723.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "759929072",
+    "id" : "164DF9B3",
+    "lastKnownWriteTime" : 1568644352,
+    "last_content_update" : 1568644352385,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment1/Exercise3-1.R",
+    "project_path" : "Exercise3-1.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

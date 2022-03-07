@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 3\n\nremove(list = ls())\nI  = diag(1, nrow = 23, ncol = 23)\nJ = matrix(c(rep(1, 23*23)), nrow = 23, ncol = 23)\nn = 1/230\nH = I-n*J\n\n# a)\n#  i)\npref = read.table(file = \"Preferences.txt\", header = T)\nPref =  cbind(Name = pref[,1],pref[,2:21])\nPreferences = as.matrix(Pref[,2:21])\nX = scale(Preferences, center = T, scale = F)\nQ = X%*%t(X)\nQlam = eigen(Q)$values[1:2]\nQLam = diag(sqrt(Qlam), nrow = 2, ncol = 2)\nQe = eigen(Q)$vectors[,1:2]\nYhat = Qe%*%QLam\nhead(Yhat,4)\n\n#  ii)\nS = cov(Preferences)\nE = eigen(S)$vectors\nYhat = X%*%E\nhead(Yhat[,1:2],4)\n\n# b)\nX = scale(Preferences, center = T, scale = F)\nS = cov(X)\nLam = eigen(S)$values[1:2]\nE = eigen(S)$vectors[,1:2]\nYhat = X%*%E\nplot(Yhat, type = \"n\", asp = 1, xlab = \"PC1\", ylab = \"PC2\")\ntext(Yhat[,1],Yhat[,2], pref[,1])\n\n# c)\nE_1 = E[,1]\nE_2 = E[,2]\nlqa = sqrt(E_1^2+E_2^2)\nra = order(lqa, decreasing = T)\narrows(0,0,2.5*E_1[ra[1:4]],2.5*E_2[ra[1:4]], col=\"red\")\ntext(3*E_1[ra[1:4]],3*E_2[ra[1:4]], labels = c(\"Q4\",\"Q19\",\"Q1\",\"Q18\"), col = \"red\")        \n\n# d) \ncolMeans(Preferences)\nConformist =  c(1,1,-1,-1,-1,1,-1,1,-1,-1,1,-1,1,1,1,-1,-1,1,1,-1)\nIndividualist = (-1)*Conformist\nmeans = colMeans(Preferences, na.rm = F, dims = 1)\nXC = Conformist-means\nXI = Individualist-means\nYhatC = XC%*%E\nYhatI = XI%*%E\n\ntext(YhatC[1,1],YhatC[1,2], \"conformist\", col = \"green\")\ntext(YhatI[1,1],YhatI[1,2], \"individualist\", col = \"green\")\n",
+    "created" : 1572862598480.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4011152391",
+    "id" : "479541BB",
+    "lastKnownWriteTime" : 1573045499,
+    "last_content_update" : 1573045499,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment8/Assignment8/Exercise3.R",
+    "project_path" : "Exercise3.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,99 @@
+#### Assignment 6
+
+Europe = read.table(file = "Europe.txt", header = T, dec = ".")
+names(Europe)[1] = "Country"
+attach(Europe)
+EuData = cbind(CPI, UNE, INP, BOP, PRC, UN)
+
+
+### Exercise 2
+
+# a)
+
+S = cov(EuData)
+R = round(cov2cor(S),4)
+E = round(eigen(R)$vectors,4)
+
+X = scale(EuData, center = T, scale = T)
+
+Yhat = X%*%E
+
+y1hat = Yhat[,1]*(-1)
+y2hat = Yhat[,2]
+
+plot(y1hat, y2hat, type = "n", asp = 1, xlab = "PC1", ylab = "PC2")
+text(y1hat,y2hat, Country)
+
+arrows(0,0,-E[,1]*2,E[,2]*2, col = "blue", lwd = 2)
+text(-E[,1]*2.2,E[,2]*2.2, c("CPI","UNE","INP","BOP","PRC","UN"), col = "blue")
+
+
+# b)
+
+XRich = c(0,0,0,(3*max(BOP)-mean(BOP))/sd(BOP),0,0)
+YhatRich = XRich%*%E
+
+plot(y1hat, y2hat, type = "n", asp = 1, xlab = "PC1", ylab = "PC2",ylim = c(-5,4))
+text(y1hat,y2hat, Country)
+text(-YhatRich[1,1],YhatRich[1,2], "Rich")
+arrows(0,0,-E[,1]*2,E[,2]*2, col = "blue", lwd = 2)
+text(-E[,1]*2.2,E[,2]*2.2, c("CPI","UNE","INP","BOP","PRC","UN"), col = "blue")
+
+
+
+### Exercise 3 
+
+
+# (i) r=1 
+
+Ahat = X%*%E[,1]%*%t(E[,1])
+head(Ahat,5)
+
+AE = 26*sum(eigen(R)$values[2:6])
+AE
+
+# (ii) r=2
+
+Ahat = X%*%cbind(E[,1],E[,2])%*%t(cbind(E[,1],E[,2]))
+head(Ahat,5)
+
+AE = 26*sum(eigen(R)$values[3:6])
+AE
+
+# (iii) r=3
+
+Ahat = X%*%cbind(E[,1],E[,2],E[,3])%*%t(cbind(E[,1],E[,2],E[,3]))
+head(Ahat,5)
+
+AE = 26*sum(eigen(R)$values[4:6])
+AE
+
+
+
+### Exercise 4
+
+Approx2dim = read.table(file = "Approx2dim.txt", header = T, dec = ".")
+names(Approx2dim)[1] = "x1"
+attach(Approx2dim)
+
+
+S = cov(Approx2dim)
+E = eigen(S)$vectors
+
+
+reslm = lm(x2 ~ x1 - 1)
+x2hatlm = reslm$fitted.values
+
+X = scale(Approx2dim, center = F, scale = T)
+Ahat = X%*%E[,1]%*%t(E[,1])
+reslm2 = lm(Ahat[,2] ~ Ahat[,1] - 1)
+x2hatlm2 =  reslm2$fitted.values
+
+plot(Approx2dim, pch = 16, asp = 1, main = "Least Squares Regression and Eigenvector Projection")
+abline(h = 0, v = 0)
+
+abline(reslm, col = "blue", lwd = 2)
+abline(reslm2, col = "red", lwd = 2)
+
+points(x1,x2hatlm, pch = 16, col = "blue")
+points(Ahat[,1],x2hatlm2, pch = 16, col = "red")

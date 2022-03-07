@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Personal Questions:
+{% endblock %}
+
+{% block content %}
+
+<p> Please answer the following questions.<br>
+
+</p>
+
+<hr> </hr>
+
+    {% formfields %}
+
+    {% next_button %}
+
+<hr> </hr>
+    <p> <i>Help: If you have any questions, please raise your hand.</i></p>
+{% endblock %}

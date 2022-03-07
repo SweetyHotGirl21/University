@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 5\n\nremove(list = ls())\n\noutlier3dim <-\n  structure(list(x1 = c(6.03715164059163, 0.658893396127709, \n                        -0.209427598650197, 1.49037743943188, 5.10139004612713, 2.52660473655032, \n                        4.08270263854686, 1.6396297328328, 2.00195903263504, 2.77458657610558, \n                        1.28741521441567, 2.16712480728223, 3.94020137996952, 3.66671226097114, \n                        5.54307038464309, 2.99996304016723), \n                 x2 = c(4.66175971455103, \n                        2.49020943909436, 0.686000191260295, 4.747219548586, 2.92391034468324, \n                        2.30272543343906, 3.35099338246828, -0.676869585898721, 5.43329622565632, \n                        3.87047176119487, 3.16424600806285, 0.828611417313106, 6.34731657802144, \n                        0.683996758387633, 4.61239921442428, 2.59789091562676), \n                 x3 = c(13.0501573302298, 3.00057699240579, 1.70373289701793, 8.9782687954901, 9.26777654464302, \n                        5.08300843101136, 11.0413483929881, 2.08137596466126, 10.9661939544758, \n                        4.31909969951773, 5.88679514311043, 4.07501107116231, 14.6272252027742, \n                        7.1921458497291, 14.5033586402903, 7.85822188801989)), \n            class = \"data.frame\", row.names = c(NA,-16L))\nA = outlier3dim\nx1 = outlier3dim$x1\nx2 = outlier3dim$x2\nx3 = outlier3dim$x3\nboxplot(x1)\nboxplot(x2)\nboxplot(x3)\nS = cov(outlier3dim)\nSinv = solve(S)\nR = cov2cor(S)\n\nlam1 = eigen(S)$values[1]\nlam2 = eigen(S)$values[2]\nlam3 = eigen(S)$values[3]\n\nX = scale(A, TRUE, FALSE)\n\ny1 = X%*%eigen(S)$vectors[,1]\ny2 = X%*%eigen(S)$vectors[,2]\ny3 = X%*%eigen(S)$vectors[,3]\nboxplot(c(y1),c(y2),c(y3))\npoints(3,max(y3),pch = 16 )\n\nfab = c(rep(\"black\",9),\"red\",rep(\"black\"))\nsiz = c(rep(1, 9), 2, rep(1))\npairs(~y1+y2+y3, pch = 16, col = fab, cex = siz)\n",
+    "created" : 1570191567911.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3387474113",
+    "id" : "4984C873",
+    "lastKnownWriteTime" : 1570777008,
+    "last_content_update" : 1570777008974,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment4/Assignment4/Exercise 5.R",
+    "project_path" : "Exercise 5.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

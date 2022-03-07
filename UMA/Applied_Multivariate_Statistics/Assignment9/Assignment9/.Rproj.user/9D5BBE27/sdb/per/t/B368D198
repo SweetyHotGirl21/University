@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 1\n\nremove(list = ls())\n\neuro  = read.table(file = \"Europe.txt\", header = T, dec =\".\")\nattach(euro)\neurope = data.frame(euro)\neurope = na.omit(europe)\nCountry = ï..Country\nnumbers = cbind(CPI, UNE, INP, BOP, PRC, UN)\n\n# a) \nEuro = scale(numbers, center = TRUE, scale = TRUE)\nEuroEuc = dist(Euro, method = \"euclidean\", diag = TRUE, upper = TRUE)\nreshclust = hclust(EuroEuc, method = \"complete\")\nplot(reshclust, hang = -1, labels = Country, ylab = \"Euclidean Distance\")\nrect.hclust(reshclust, k = 5, border = c(1,2,3,4,5))\n\n# b) \nS1 = cov(Euro)\nlam1 = eigen(S1)$values[1:2]\ne1 = eigen(S1)$vectors[,1:2]\nYhat = Euro%*%e1\nplot(-Yhat[,1],Yhat[,2], type = \"n\", asp = 1, ylab = \"PC2\", xlab = \"PC1\")\ntext(-Yhat[,1],Yhat[,2], Country,  col = cutree(reshclust, k = 5))\n\narrows(0,0,-2*e1[1,1],2*e1[1,2], col = \"blue\", lwd = 2)\ntext(-2.5*e1[1,1],2.5*e1[1,2], labels = variable.names(europe[2]), col = \"blue\")\narrows(0,0,-2*e1[2,1],2*e1[2,2], col = \"blue\", lwd = 2)\ntext(-2.5*e1[2,1],2.5*e1[2,2], labels = variable.names(europe[3]), col = \"blue\")\narrows(0,0,-2*e1[3,1],2*e1[3,2], col = \"blue\", lwd = 2)\ntext(-2.5*e1[3,1],2.5*e1[3,2], labels = variable.names(europe[4]), col = \"blue\")\narrows(0,0,-2*e1[4,1],2*e1[4,2], col = \"blue\", lwd = 2)\ntext(-2.5*e1[4,1],2.5*e1[4,2], labels = variable.names(europe[5]), col = \"blue\")\narrows(0,0,-2*e1[5,1],2*e1[5,2], col = \"blue\", lwd = 2)\ntext(-2.5*e1[5,1],2.5*e1[5,2], labels = variable.names(europe[6]), col = \"blue\")\narrows(0,0,-2*e1[6,1],2*e1[6,2], col = \"blue\", lwd = 2)\ntext(-2.5*e1[6,1],2.5*e1[6,2], labels = variable.names(europe[7]), col = \"blue\")\n\n# c)\n\n# d)\nR1 = cor(Euro)\nround(R1, digits = 2)\nEuroDist = as.dist(1-R1)\nEuroClus = hclust(EuroDist, method = \"complete\")\nplot(EuroClus, hang = -1, labels = variable.names(europe[2:7]), ylab = \"1-R Distances\")\n\n",
+    "created" : 1573214963096.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2031552735",
+    "id" : "B368D198",
+    "lastKnownWriteTime" : 1573500664,
+    "last_content_update" : 1573500664082,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment9/Assignment9/Exercise1.R",
+    "project_path" : "Exercise1.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

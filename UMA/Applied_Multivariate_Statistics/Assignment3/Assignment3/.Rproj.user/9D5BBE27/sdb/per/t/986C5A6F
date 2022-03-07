@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#Exercise 8\n\nremove(list = ls())\n\noutlier3dim <-\n  structure(list(x1 = c(6.03715164059163, 0.658893396127709, \n                        -0.209427598650197, 1.49037743943188, 5.10139004612713, 2.52660473655032, \n                        4.08270263854686, 1.6396297328328, 2.00195903263504, 2.77458657610558, \n                        1.28741521441567, 2.16712480728223, 3.94020137996952, 3.66671226097114, \n                        5.54307038464309, 2.99996304016723), x2 = c(4.66175971455103, \n                                                                    2.49020943909436, 0.686000191260295, 4.747219548586, 2.92391034468324, \n                                                                    2.30272543343906, 3.35099338246828, -0.676869585898721, 5.43329622565632, \n                                                                    3.87047176119487, 3.16424600806285, 0.828611417313106, 6.34731657802144, \n                                                                    0.683996758387633, 4.61239921442428, 2.59789091562676), x3 = c(13.0501573302298, \n                                                                                                                                   3.00057699240579, 1.70373289701793, 8.9782687954901, 9.26777654464302, \n                                                                                                                                   5.08300843101136, 11.0413483929881, 2.08137596466126, 10.9661939544758, \n                                                                                                                                   4.31909969951773, 5.88679514311043, 4.07501107116231, 14.6272252027742, \n                                                                                                                                   7.1921458497291, 14.5033586402903, 7.85822188801989)), class = \"data.frame\", row.names = c(NA, \n                                                                                                                                                                                                                              -16L))\noutlier3dim\nm1 = mean(outlier3dim[,1])\nm1\nm2 = mean(outlier3dim[,2])\nm2\nm3 = mean(outlier3dim[,3])\nm3\nm = c(m1,m2,m3)\n\nX = \n\nboxplot(outlier3dim$x1)\ns = cov(outlier3dim)\nS = solve(s)\n\ndis = mahalanobis(outlier3dim,m,solve(S))\ndis\n",
+    "created" : 1570174818739.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2051241699",
+    "id" : "986C5A6F",
+    "lastKnownWriteTime" : 1570176216,
+    "last_content_update" : 1570176216609,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment3/Assignment3/Exercise8.R",
+    "project_path" : "Exercise8.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

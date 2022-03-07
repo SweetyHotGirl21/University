@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 2\n\nremove(list = ls())\n\nx1 = seq(-3,3, le = 100)\nx2 = seq(-3,3, le = 100)\n\n# i)\n\nm = c(0,0)\nm1 = 0\nm2 = 0\n\nS11 = 1\nS22 = 1\n\nCOR12 = 0\n\nf= function(v1,v2)\n{\n  (1/(2*pi))*exp((-1/2)*(((v1-m1)^2)+((v2-m2)^2)))\n}\n\nz = outer(x1,x2,f)\npersp(x1,x2,z,main=\"\",cex.lab=1.5,theta=30,phi=20,r=50,d=0.1,expand=0.5,\n      ltheta=90,lphi=180,shade=0.75,ticktype=\"detailed\",nticks=5,\n      xlim=c(-3,3),ylim=c(-3,3),zlim=c(0,0.2))\ncontour(x1,x2,z,asp = 1)\n\n# ii)\n\nm = c(0,0)\nm1 = 0\nm2 = 0\n\nS11 = 1.5^2\nS22 = 1\n\nCOR12 = 0\n\nf= function(v1,v2)\n{\n  (1/((2*pi)*sqrt(S11*S22)*sqrt(1-COR12^2)))*exp((-1/(2*(1-COR12^2)))*(((v1-m1)^2/S11)\n  -2*COR12*((v1-m1)/sqrt(S11))*((v2-m2)/sqrt(S22))+((v2-m2)^2)/S22))\n}\n\nz = outer(x1,x2,f)\npersp(x1,x2,z,main=\"\",cex.lab=1.5,theta=30,phi=20,r=50,d=0.1,expand=0.5,\n      ltheta=90,lphi=180,shade=0.75,ticktype=\"detailed\",nticks=5,\n      xlim=c(-3,3),ylim=c(-3,3),zlim=c(0,0.2))\ncontour(x1,x2,z,asp = 1)\n\n# iii)\n\nm = c(0,0)\nm1 = 0\nm2 = 0\n\nS11 = 1\nS22 = 1\n\nCOR12 = -0.8\n\nf= function(v1,v2)\n{\n  (1/((2*pi)*sqrt(S11*S22)*sqrt(1-COR12^2)))*exp((-1/(2*(1-COR12^2)))*(((v1-m1)^2/S11)\n  -2*COR12*((v1-m1)/sqrt(S11))*((v2-m2)/sqrt(S22))+((v2-m2)^2)/S22))\n}\nz = outer(x1,x2,f)\n\npersp(x1,x2,z,main=\"\",cex.lab=1.5,theta=30,phi=20,r=50,d=0.1,expand=0.5,\n      ltheta=90,lphi=180,shade=0.75,ticktype=\"detailed\",nticks=5,\n      xlim=c(-3,3),ylim=c(-3,3),zlim=c(0,0.2))\ncontour(x1,x2,z,asp = 1)\n\n# iv)\n\nm = c(0,0)\nm1 = 0\nm2 = 0\n\nS11 = 1\nS22 = 1\n\nCOR12 = 0.8\n\nf= function(v1,v2)\n{\n  (1/((2*pi)*sqrt(S11*S22)*sqrt(1-COR12^2)))*exp((-1/(2*(1-COR12^2)))*(((v1-m1)^2/S11)\n  -2*COR12*((v1-m1)/sqrt(S11))*((v2-m2)/sqrt(S22))+((v2-m2)^2)/S22))\n}\nz = outer(x1,x2,f)\n\npersp(x1,x2,z,main=\"\",cex.lab=1.5,theta=30,phi=20,r=50,d=0.1,expand=0.5,\n      ltheta=90,lphi=180,shade=0.75,ticktype=\"detailed\",nticks=5,\n      xlim=c(-3,3),ylim=c(-3,3),zlim=c(0,0.2))\ncontour(x1,x2,z,asp = 1)\n",
+    "created" : 1569781981862.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2087737802",
+    "id" : "8541315B",
+    "lastKnownWriteTime" : 1569966924,
+    "last_content_update" : 1569966924801,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment3/Assignment3/Exercise 2.R",
+    "project_path" : "Exercise 2.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

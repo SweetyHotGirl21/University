@@ -1,0 +1,77 @@
+### Exercise 2
+
+remove(list = ls())
+
+library(rJava)
+library(iplots)
+
+getwd()
+
+
+
+euro  = read.table(file = "Europe.txt", header = T, dec =".")
+attach(euro)
+europe = data.frame(euro)
+europe = na.omit(europe)
+ls(europe)
+Country = europe$ï..Country
+CPI = europe$CPI
+UNE = c(europe$UNE)
+INP = c(europe$INP)
+BOP = c(europe$BOP)
+PRC = c(europe$PRC)
+UN = c(europe$UN)
+
+numbers = cbind(CPI,UNE,INP,BOP,PRC,UN)
+S = cov(numbers)
+r = round(cor(numbers), digits = 4)
+
+# a) 
+pairs(numbers)
+
+reseigen = eigen(r)
+lambda = round(reseigen$values, digits = 4)
+plot(lambda, type = "l", main = "Scree-Plot", xlab = "# component")
+
+# b)
+round(r, digits = 4)
+
+# c)
+E = round(reseigen$vectors, digits = 4)
+X = scale(numbers, center = TRUE, scale = TRUE)
+Yhat = (X)%*%E
+y1hat = Yhat[,1]
+y2hat = Yhat[,2]
+ihist(y1hat)
+ihist(y2hat)
+ihist(CPI)
+ihist(UNE)
+ihist(INP)
+ihist(BOP)
+ihist(PRC)
+ihist(UN)
+
+
+# d)
+E = round(reseigen$vectors, digits = 4)
+E
+lambda
+round(cumsum(lambda)/sum(diag(r)),4)
+e1 = E[,1]
+e2 = E[,2]
+e3 = E[,3]
+e4 = E[,4]
+e5 = E[,5]
+e6 = E[,6]
+
+
+
+### e)
+lambda1 = lambda[1]
+lambda2 = lambda[2]
+rec1 = round(lambda1/sum(lambda), digits = 4)
+paste("The first principal component explains", rec1*100, "% of the total variation. It is mostly driven by CPI and PRC.")
+rec2 = round(lambda2/sum(lambda), digits = 4)
+paste("The second  principal component explains", rec2*100, "% of the total variation. It is mostly driven by INP, BOP and UN. ")
+y12hat = data.frame(Country,y1hat,y2hat,CPI,UNE,INP,BOP,PRC,UN)
+y12hat

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 5   \n\nremove(list = ls())\n\n\nm = c(1,0.5)\nm1 = 1\nm2 = 0.5\nS = matrix(c(1,0.8,0.8,1),2,2)\n\n\nS11 = S[1,1]\nS22 = S[2,2]\n\nCOR12 = COR[1,2]\n\n# a) \n\n#  i)\nx1 = seq(-3,4,le=100)\nx2 = x1\n\ndens = sqrt((1/((2*pi)*sqrt(1-COR12^2)))*exp((-1/(2*(1-COR12^2)))*qchisq(0.95,2)))\n\n\n####sli 74\n\nf= function(v1,v2)\n{\n  (1/((2*pi)*sqrt(S11*S22)*sqrt(1-COR12^2)))*exp((-1/(2*(1-COR12^2)))*(((v1-m1)^2/S11)\n  -2*COR12*((v1-m1)/sqrt(S11))*((v2-m2)/sqrt(S22))+((v2-m2)^2)/S22))\n}\n\nz = outer(x1,x2,f)\nz = outer(x1,x2,f)\npersp(x1,x2,z,main=\"\",cex.lab=1.5,theta=30,phi=20,r=50,d=0.1,expand=0.5,\n      ltheta=90,lphi=180,shade=0.75,ticktype=\"detailed\",nticks=5,\n      xlim=c(-3,3),ylim=c(-3,3),zlim=c(0,0.2))\ncontour(x1,x2, resouter, levels = dens, asp = 1, drawlabels = FALSE)\n\n\n\n\n####################\n\n# b) \ndens1 = round(dens, digits = 5)\npaste(\"Ervery point on this contour exhibit is lying on on the density value\", dens1)\n\n# c) ### Folie 55 mean centeres Elipse\n\n\nA = S\n\nf= function(v1,v2)\n{\n  A[1,1]*(v1-1)^2+A[2,2]*(v2-0.5)^2+2*A[1,2]*(v1-1)*(v2-0.5)\n}\n\nresouter=outer(x1,x2,f)\ncontour(x1 ,x2 ,resouter,levels = dens, asp = 1, drawlabels = FALSE)\n\nE=eigen(A)\nE\n\n###Diese Werte stimmen mit jenen überein, welche mit Hand berechnet wurden.\n\ne10 = E$vectors[,1]\ne11 = (sqrt(dens)/sqrt(9))*e10\narrows(0,0,e11[1],e11[2],col = \"black\")\ntext(e11[1]+0.3,e11[2],\"x\")\n\ne20 = E$vectors[,2]\ne21 = (sqrt(2)/sqrt(1))*e20\narrows(0,0,e21[1],e21[2],col = \"black\")",
+    "created" : 1569965702917.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2773802079",
+    "id" : "1BEDB5A6",
+    "lastKnownWriteTime" : 1570171985,
+    "last_content_update" : 1570171985576,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment3/Assignment3/Alternative 5.R",
+    "project_path" : "Alternative 5.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

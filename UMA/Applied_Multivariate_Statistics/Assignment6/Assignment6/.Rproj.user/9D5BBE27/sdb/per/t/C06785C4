@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 2\n\nremove(list = ls())\n\neuro  = read.table(file = \"Europe.txt\", header = T, dec =\".\")\nattach(euro)\neurope = data.frame(euro)\neurope = na.omit(europe)\nls(europe)\nCountry = ï..Country\nnumbers = cbind(CPI, UNE, INP, BOP, PRC, UN)\n\n# a) \nR = cor(numbers)\nE = eigen(R)$vectors\n\nX = scale(numbers, center = T, scale = T)\nYhat = X%*%E\ny1hat = Yhat[,1]*(-1)\ny2hat = Yhat[,2]\n\nplot(y1hat, y2hat, type = \"n\", asp = 1, xlab = \"PC1\", ylab = \"PC2\", xlim = c(-4,3), ylim = c(-2, 4))\ntext(y1hat, y2hat, Country)\n\narrows(0,0,-E[,1]*1.5,E[,2]*1.5, lwd = 2, col = \"blue\")\ntext(-E[,1]*2, E[,2]*2, c(\"CPI\",\"UNE\",\"INP\",\"BOP\",\"PRC\",\"UN\"), col = \"blue\")\n\n# b)\nRich = data.frame(ï..Country = \"Rich\", CPI = mean(CPI), UNE = mean(UNE), INP = mean(INP), BOP = max(BOP)*3, PRC = mean(PRC), UN = mean(UN))\nrbind.data.frame(europe, Rich)\n\nXRich = c(0,0,0,(3*max(BOP)-mean(BOP))/sd(BOP),0,0)\nYhatRich = XRich%*%E\nplot(y1hat, y2hat, type = \"n\", asp = 1, xlab = \"PC1\", ylab = \"PC2\",ylim = c(-5,4))\ntext(y1hat,y2hat, Country)\ntext(-YhatRich[1,1],YhatRich[1,2], \"Rich\")\narrows(0,0,-E[,1]*2,E[,2]*2, col = \"blue\", lwd = 2)\ntext(-E[,1]*2.2,E[,2]*2.2, c(\"CPI\",\"UNE\",\"INP\",\"BOP\",\"PRC\",\"UN\"), col = \"blue\")\n\n",
+    "created" : 1571751737319.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3584891608",
+    "id" : "C06785C4",
+    "lastKnownWriteTime" : 1571867319,
+    "last_content_update" : 1571867319192,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment6/Assignment6/Exercise2.R",
+    "project_path" : "Exercise2.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

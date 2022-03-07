@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "### Exercise 6\n\nremove(list = ls())\n\nstudents  = read.table(file = \"students2008.txt\", header = T, dec =\",\")\nattach(students)\nheightweight=data.frame(height,weight)\nheightweight=na.omit(heightweight)\nattach(heightweight)\nm1=mean(height)\nm2=mean(weight)\nc2=qchisq(0.95,2)\nS=cov(heightweight)\nSinv=solve(S)\na11=Sinv[1,1]\na12=Sinv[1,2]\na22=Sinv[2,2]\nx1=seq(150,210,le=1000)\nx2=seq(40,110,le=1000)\nf=function(x1,x2)\n{\n  a11*(x1-m1)^2+a22*(x2-m2)^2+2*a12*(x1-m1)*(x2-m2)\n}\nz=outer(x1,x2,f)\n\n# a)\n\ncontour(x1,x2,z,asp=1,levels=c2,drawlabels=FALSE,lwd=2,\n        cex.axis=1.5,cex.lab=1.5,cex.main=1.5,\n        xlab=\"height\",ylab=\"weight\",main=\"Students 2008\")\nreseigen=eigen(S)\nlambda=reseigen$values\nE=reseigen$vectors\nlambda1=lambda[1]\nlambda2=lambda[2]\ne1=E[,1]\ne2=E[,2]\narrows(m1,m2,sqrt(c2*lambda1)*e1[1]+m1,sqrt(c2*lambda1)*e1[2]+m2,lwd=2, col = \"red\")\narrows(m1,m2,sqrt(c2*lambda2)*e2[1]+m1,sqrt(c2*lambda2)*e2[2]+m2,lwd=2, col = \"red\")\narrows(m1,m2,-sqrt(c2*lambda1)*e1[1]+m1,-sqrt(c2*lambda1)*e1[2]+m2,lwd=2, col = \"red\")\narrows(m1,m2,-sqrt(c2*lambda2)*e2[1]+m1,-sqrt(c2*lambda2)*e2[2]+m2,lwd=2, col = \"red\")\n\npoints(height,weight,pch=16)\n\n# ii)\nX = scale(heightweight, TRUE, FALSE)\nS = cov(heightweight)\nEe = eigen(S)\nS = matrix(c(Ee$values[1],0,0,Ee$values[2]),2,2)\nSinv = solve(S)\nlam1 = eigen(S)$values[1]\nlam2 = eigen(S)$values[2]\n\nc2=qchisq(0.95,2)\n\nx1 = seq(-40,40, le = 1000)\nx2 = seq(-30,30, le = 1000)\n\nf=function(x1,x2)\n{\n  1/(lam1)*(x1)^2+1/lam2*(x2)^2\n}\nz=outer(x1,x2,f)\n\ncontour(x1,x2,z,asp=1,levels=c2,drawlabels=FALSE,lwd=2,\n        cex.axis=1.5,cex.lab=1.5,cex.main=1.5,\n        xlab=\"height\",ylab=\"weight\",main=\"Students 2008\")\n\nreseigen=eigen(S)\n\nlambda=reseigen$values\nE=reseigen$vectors\nlambda1=lambda[1]\nlambda2=lambda[2]\ne1=E[,1]\ne2=E[,2]\nm1 = 0\nm2 = 0\narrows(m1,m2,sqrt(c2*lambda1)*e1[1]+m1,sqrt(c2*lambda1)*e1[2]+m2,lwd=2, col = \"red\")\narrows(m1,m2,sqrt(c2*lambda2)*e2[1]+m1,sqrt(c2*lambda2)*e2[2]+m2,lwd=2, col = \"red\")\narrows(m1,m2,-sqrt(c2*lambda1)*e1[1]+m1,sqrt(c2*lambda1)*e1[2]+m2,lwd=2, col = \"red\")\narrows(m1,m2,sqrt(c2*lambda2)*e2[1]+m1,-sqrt(c2*lambda2)*e2[2]+m2,lwd=2, col = \"red\")\n\ny1 = X%*%Ee$vectors[,1]\ny2 = X%*%Ee$vectors[,2]\n\nY = cbind(y1,y2)\npoints(Y, pch = 16)\n\nboxplot(c(y1),c(y2))\n\nplot(y1,height, pch = 16, asp = 1)\nplot(y2,height, pch = 16, asp = 1)\nplot(y1, weight, pch = 16, asp = 1)\nplot(y2, weight, pch = 16, asp = 1)\n\n# b) \nround(Ee$vectors, digits = 4)\nround(Ee$values, digits = 4)\n\nround(cor(y1,height), digits = 4)\nround(cor(y1,weight), digits = 4)\nround(cor(y2,height), digits = 4)\nround(cor(y2,weight), digits = 4)\n\nround(Ee$values[1]/sum(Ee$values), digits = 4)\nround(sum(Ee$values)/sum(Ee$values), digits = 4)",
+    "created" : 1570194646584.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "325588698",
+    "id" : "46CFE63A",
+    "lastKnownWriteTime" : 1570228020,
+    "last_content_update" : 1570228020126,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment4/Assignment4/Exercise 6.R",
+    "project_path" : "Exercise 6.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

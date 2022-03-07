@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "###Exercise 6\n\nremove(list = ls())\n\n### a)\nA = matrix(c(13,-4,2,-4,13,-2,2,-2,10),3,3)\nEA = eigen(A)\nlamEA = EA$values\n\n###Eigenvalue matrix\nm_lamEA = matrix(c(18,0,0,0,9,0,0,0,9),3,3)\nm_lamEA\n\n###Eigenvector matrix\neiVA = EA$vectors\neiVA\n\n###sectral decompostion\neiVA%*%m_lamEA%*%t(eiVA)\n###Wie zu erwarten entspreicht das Ergebnis der sectral decomposition der Matrix.\n\n### b)\n\neiEA1 = EA$vectors[,1]\neiEA2 = EA$vectors[,2]\neiEA3 = EA$vectors[,3]\n\n###  i)\nlamEA[1]*eiEA1%*%t(eiEA1)\n\n###  ii)\nlamEA[1]*eiEA1%*%t(eiEA1)+lamEA[2]*eiEA2%*%t(eiEA2)\n\n###  iii)\nlamEA[1]*eiEA1%*%t(eiEA1)+lamEA[2]*eiEA2%*%t(eiEA2)+lamEA[3]*eiEA3%*%t(eiEA3)\n\n### c)\nsqm_lamEA = sqrt(matrix(c(18,0,0,0,9,0,0,0,9),3,3))\nsqm_A = eiVA%*%sqm_lamEA%*%t(eiVA)\nsqm_A\n",
+    "created" : 1568989030009.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3793338602",
+    "id" : "DD5F1BE",
+    "lastKnownWriteTime" : 1569318125,
+    "last_content_update" : 1569318125,
+    "path" : "~/Studium/Mannheim/VWL/2019 - 2020 WS/Applied Multivariate Statistics/Assignments/Assignment2/Assignment2/Exercise 6.R",
+    "project_path" : "Exercise 6.R",
+    "properties" : {
+        "notebook_format" : "word_document",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
